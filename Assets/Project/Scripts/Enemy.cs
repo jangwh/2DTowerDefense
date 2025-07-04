@@ -6,15 +6,12 @@ namespace TowerDefense
 {
     public class Enemy : Character
     {
+        public float moveSpeed;
 
-        void OnTriggerStay2D(Collider2D other)
+        void Update()
         {
-            if (other.CompareTag("Player"))
-            {
-                if (Time.time < lastAttackTime + attackInterval) return;
-                lastAttackTime = Time.time;
-                TakeDamage(other.GetComponent<Character>().damage);
-            }
+            //TODO: raycasthit 쓰기
         }
+
     }
 }

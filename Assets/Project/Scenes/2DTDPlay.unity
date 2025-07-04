@@ -307,6 +307,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1162525064}
     - target: {fileID: 5492949769662081397, guid: 83685e8abf8e1e740a867f28c00bfc3c, type: 3}
+      propertyPath: charName
+      value: knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5492949769662081397, guid: 83685e8abf8e1e740a867f28c00bfc3c, type: 3}
       propertyPath: rayDistance
       value: 2.5
       objectReference: {fileID: 0}
@@ -314,7 +318,8 @@ PrefabInstance:
       propertyPath: attackInterval
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7281851232266650125, guid: 83685e8abf8e1e740a867f28c00bfc3c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -495,6 +500,7 @@ MonoBehaviour:
   damage: 2
   lastAttackTime: 0
   attackInterval: 5
+  moveSpeed: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
