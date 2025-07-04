@@ -12,8 +12,11 @@ namespace TowerDefense
 
         public float rayDistance;
         public string charName;
+
+        public float prayTime;
         private bool isAttack = false;
         private bool isDie = false;
+        private bool isSpell = false;
 
         void Awake()
         {
@@ -37,10 +40,14 @@ namespace TowerDefense
                     Attack(rayHit);
                     lastAttackTime = Time.time;
                 }
+                else if(charName == "Priest")
+                {
+                    isSpell = true;
+                    animator.SetBool("isSpell", isSpell);
+                }
             }
 
             Die();
-            //TODO: 프리스트는 소환되자마자 animator.SetBool("isSpell", isSpell); 애니메이션 동작, GameManager에서 소환 담당?
         }
         void Attack(RaycastHit2D ray)
         {

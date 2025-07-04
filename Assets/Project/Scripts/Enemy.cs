@@ -26,7 +26,6 @@ namespace TowerDefense
         void Update()
         {
             Vector2 rayStartpos = new Vector2(transform.position.x, transform.position.y + 1f);
-            //TODO: raycasthit 수정 완료하기
             RaycastHit2D rayHit = Physics2D.Raycast(rayStartpos, Vector2.left, rayDistance);
             Debug.DrawRay(rayStartpos, Vector2.left * rayDistance, new Color(1, 0, 0, 1));
 
@@ -48,7 +47,6 @@ namespace TowerDefense
             }
 
             Die();
-            //TODO: 프리스트는 소환되자마자 animator.SetBool("isSpell", isSpell); 애니메이션 동작, GameManager에서 소환 담당?
         }
         public void Move()
         {
@@ -57,7 +55,7 @@ namespace TowerDefense
         }
         void GoSpeed()
         {
-            moveSpeed = 2f;
+            moveSpeed = 0.5f;
         }
         void Stop()
         {
@@ -86,6 +84,7 @@ namespace TowerDefense
         {
             if (currentHp <= 0)
             {
+                moveSpeed = 0f;
                 animator.SetInteger("State", 9);
                 //TODO: 오브젝트풀에서 회수
             }
