@@ -27,7 +27,6 @@ namespace TowerDefense
         void Update()
         {
             Vector2 rayStartpos = new Vector2(transform.position.x, transform.position.y + 0.2f);
-            //TODO: raycasthit 수정 완료하기
             RaycastHit2D rayHit = Physics2D.Raycast(rayStartpos, Vector2.right, rayDistance);
             Debug.DrawRay(rayStartpos, Vector2.right * rayDistance, new Color(0, 1, 0, 1), rayDistance);
 

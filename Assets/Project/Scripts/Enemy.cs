@@ -10,7 +10,7 @@ namespace TowerDefense
     {
         Animator animator;
 
-        public float moveSpeed;
+        private float moveSpeed;
         public float rayDistance;
         public string charName;
         private bool isAttack = false;
@@ -32,6 +32,14 @@ namespace TowerDefense
 
             Move();
 
+            if(rayHit.collider != null && rayHit.collider.CompareTag("Player"))
+            {
+                Stop();
+            }
+            else
+            {
+                GoSpeed();
+            }
             if (Time.time > lastAttackTime + attackInterval)
             {
                 moveSpeed = 0f;
@@ -46,6 +54,15 @@ namespace TowerDefense
         {
             transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
             animator.SetInteger("State", 2);
+        }
+        void GoSpeed()
+        {
+            moveSpeed = 2f;
+        }
+        void Stop()
+        {
+            moveSpeed = 0f;
+            animator.SetInteger("State", 0);
         }
         void Attack(RaycastHit2D ray)
         {

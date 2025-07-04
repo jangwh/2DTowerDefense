@@ -379,7 +379,6 @@ MonoBehaviour:
   damage: 2
   lastAttackTime: 0
   attackInterval: 5
-  moveSpeed: 1
   rayDistance: 2
   charName: Zombie
 --- !u!114 &6489522191879827733
