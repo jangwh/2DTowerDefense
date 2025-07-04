@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5492949769662081397}
   - component: {fileID: 95000011895321844}
   - component: {fileID: 7281851232266650125}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Knight
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -51,8 +51,9 @@ MonoBehaviour:
   currentHp: 0
   damage: 10
   lastAttackTime: 0
-  attackInterval: 0
-  enemy: {fileID: 0}
+  attackInterval: 3
+  rayDistance: 2.5
+  charName: knight
 --- !u!95 &95000011895321844
 Animator:
   serializedVersion: 5
@@ -103,10 +104,10 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1, y: 1}
+  m_Offset: {x: 0, y: 1.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -117,7 +118,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 1}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &1000011164445256
 GameObject:
@@ -129,9 +130,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011100352644}
   - component: {fileID: 212000010816519800}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,8 +190,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 95126559
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300286, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -213,9 +214,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012139759400}
   - component: {fileID: 212000013410116670}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: shield
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -273,8 +274,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 95126559
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300228, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -297,9 +298,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010050103230}
   - component: {fileID: 212000010885969670}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Back arm
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,8 +359,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 95126559
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300044, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -382,9 +383,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012883391804}
   - component: {fileID: 212000012135133868}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Front arm
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -443,8 +444,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 95126559
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -467,9 +468,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013780255908}
   - component: {fileID: 212000012764068944}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Front leg
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -527,8 +528,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 95126559
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300046, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -551,9 +552,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011273785906}
   - component: {fileID: 212000012884130970}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Back leg
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -611,8 +612,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 95126559
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300046, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -635,9 +636,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010376655498}
   - component: {fileID: 212000010432600294}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -700,8 +701,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 95126559
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300028, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -724,7 +725,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010764503930}
   - component: {fileID: 212000010006319442}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -784,8 +785,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 95126559
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300174, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
