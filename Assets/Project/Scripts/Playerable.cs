@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Lean.Pool;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -76,7 +77,7 @@ namespace TowerDefense
             {
                 isDie = true;
                 animator.SetBool("isDie", isDie);
-                //TODO: 오브젝트풀에서 회수
+                LeanPool.Despawn(this);
             }
         }
     }

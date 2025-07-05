@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
+using Lean.Pool;
+
 
 namespace TowerDefense
 {
@@ -86,7 +87,7 @@ namespace TowerDefense
             {
                 moveSpeed = 0f;
                 animator.SetInteger("State", 9);
-                //TODO: 오브젝트풀에서 회수
+                LeanPool.Despawn(this);
             }
         }
 
