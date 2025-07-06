@@ -87,9 +87,13 @@ namespace TowerDefense
             {
                 moveSpeed = 0f;
                 animator.SetInteger("State", 9);
-                LeanPool.Despawn(this);
+                StartCoroutine(DieAnimation());
             }
         }
-
+        IEnumerator DieAnimation()
+        {
+            yield return new WaitForSeconds(1.5f);
+            LeanPool.Despawn(this);
+        }
     }
 }

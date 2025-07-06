@@ -52,8 +52,9 @@ MonoBehaviour:
   damage: 5
   lastAttackTime: 0
   attackInterval: 1.5
-  rayDistance: 5
+  rayDistance: 10
   charName: Peasant
+  prayTime: 0
 --- !u!95 &95000013227593822
 Animator:
   serializedVersion: 5

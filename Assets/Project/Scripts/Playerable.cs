@@ -77,8 +77,13 @@ namespace TowerDefense
             {
                 isDie = true;
                 animator.SetBool("isDie", isDie);
-                LeanPool.Despawn(this);
+                StartCoroutine(DieAnimation());
             }
+        }
+        IEnumerator DieAnimation()
+        {
+            yield return new WaitForSeconds(1.5f);
+            LeanPool.Despawn(this);
         }
     }
 }
