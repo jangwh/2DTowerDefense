@@ -8,7 +8,7 @@ using Lean.Pool;
 namespace TowerDefense {
     public class DropTower : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        //TODO : 드랍한 위치에 해당 이미지의 플레이어블프리펩 생성
+        //TODO : 드랍한 위치는 canvas지만 world좌표로 나오게 수정
         public Image containerImage;
         public Image receivingImage;
         public Transform tileGroup;
@@ -30,6 +30,8 @@ namespace TowerDefense {
             Sprite dropSprite = GetDropSprite(eventData);
             if (dropSprite != null)
             {
+                if (receivingImage.overrideSprite != null)
+                    return; // 이미 배치된 경우 무시
                 receivingImage.overrideSprite = dropSprite;
 
                 GameObject prefab = GetPrefabFromSprite(dropSprite);
@@ -38,6 +40,7 @@ namespace TowerDefense {
                     Vector3 spawnPosition = transform.position; // 드롭된 위치
                     spawnPosition.z = 0;
                     Instantiate(prefab, spawnPosition, Quaternion.identity, tileGroup);
+                    containerImage.color = new Color(0, 0, 0, 0);
                 }
             }
         }
@@ -53,7 +56,7 @@ namespace TowerDefense {
         {
             if (containerImage == null)
                 return;
-            containerImage.color = normalColor;
+            containerImage.color = new Color(0, 0, 0, 0); ;
         }
         private Sprite GetDropSprite(PointerEventData eventData)
         {
