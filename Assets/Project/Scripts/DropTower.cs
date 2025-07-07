@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,9 +8,10 @@ using Lean.Pool;
 namespace TowerDefense {
     public class DropTower : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        //TODO : µå¶øÇÑ À§Ä¡´Â canvasÁö¸¸ worldÁÂÇ¥·Î ³ª¿À°Ô ¼öÁ¤
+        //TODO : ë“œëí•œ ìœ„ì¹˜ëŠ” canvasì§€ë§Œ worldì¢Œí‘œë¡œ ë‚˜ì˜¤ê²Œ ìˆ˜ì •
         public Image containerImage;
         public Image receivingImage;
+        public RectTransform rect;
         public Transform tileGroup;
         private Color normalColor;
         public Color highlightColor = Color.yellow;
@@ -18,7 +19,7 @@ namespace TowerDefense {
         public void OnEnable()
         {
             if (containerImage != null)
-                normalColor = containerImage.color;
+                normalColor = new Color(0, 0, 0, 0);
         }
         public void OnDrop(PointerEventData eventData)
         {
@@ -31,15 +32,16 @@ namespace TowerDefense {
             if (dropSprite != null)
             {
                 if (receivingImage.overrideSprite != null)
-                    return; // ÀÌ¹Ì ¹èÄ¡µÈ °æ¿ì ¹«½Ã
+                    return; // ì´ë¯¸ ë°°ì¹˜ëœ ê²½ìš° ë¬´ì‹œ
                 receivingImage.overrideSprite = dropSprite;
 
                 GameObject prefab = GetPrefabFromSprite(dropSprite);
                 if (prefab != null)
                 {
-                    Vector3 spawnPosition = transform.position; // µå·ÓµÈ À§Ä¡
+                    Vector3 spawnPosition = tileGroup.transform.position + GetWorldPositon(rect); // ë“œë¡­ëœ ìœ„ì¹˜
+                    
                     spawnPosition.z = 0;
-                    Instantiate(prefab, spawnPosition, Quaternion.identity, tileGroup);
+                    LeanPool.Spawn(prefab, Camera.main.ScreenToWorldPoint(spawnPosition) , Quaternion.Euler(0, 180, 0), transform);
                     containerImage.color = new Color(0, 0, 0, 0);
                 }
             }
@@ -82,6 +84,18 @@ namespace TowerDefense {
                     return mapping.prefab;
             }
             return null;
+        }
+        private Vector3 GetWorldPositon(RectTransform rectTransform)
+        {
+            Vector3[] corners = new Vector3[4];
+            rectTransform.GetWorldCorners(corners); //RectTransformì˜ ê¼­ì§€ì  ì¢Œí‘œë¥¼ World ì¢Œí‘œë¡œ ê°€ì ¸ì˜´
+
+            Vector3 center = Vector3.zero;
+            foreach( Vector3 corner in corners)
+                center += corner;
+
+            center /= 4f;
+            return center;
         }
     }
     [System.Serializable]

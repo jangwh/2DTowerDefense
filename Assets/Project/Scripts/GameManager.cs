@@ -65,7 +65,7 @@ namespace TowerDefense
             int ranEnemy = Random.Range(0, enemies.Length);
             int ranTileY = Random.Range(-tile.genDisty, tile.genDisty + 1);
 
-            LeanPool.Spawn(enemies[ranEnemy], new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1), Quaternion.identity);
+            LeanPool.Spawn(enemies[ranEnemy], new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 0.5f), Quaternion.identity);
         }
     }
 }
