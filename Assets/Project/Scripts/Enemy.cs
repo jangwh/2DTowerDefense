@@ -26,13 +26,13 @@ namespace TowerDefense
         }
         void Update()
         {
-            Vector2 rayStartpos = new Vector2(transform.position.x, transform.position.y + 1f);
+            Vector2 rayStartpos = new Vector2(transform.position.x - 1f, transform.position.y + 1f);
             RaycastHit2D rayHit = Physics2D.Raycast(rayStartpos, Vector2.left, rayDistance);
             Debug.DrawRay(rayStartpos, Vector2.left * rayDistance, new Color(1, 0, 0, 1));
 
             Move();
 
-            if(rayHit.collider != null && rayHit.collider.CompareTag("Player"))
+            if(rayHit.collider != null && (rayHit.collider.CompareTag("Player") || rayHit.collider.CompareTag("Enemy")))
             {
                 Stop();
             }

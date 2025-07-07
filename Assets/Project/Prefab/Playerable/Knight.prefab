@@ -54,6 +54,7 @@ MonoBehaviour:
   attackInterval: 3
   rayDistance: 2.5
   charName: knight
+  prayTime: 0
 --- !u!95 &95000011895321844
 Animator:
   serializedVersion: 5

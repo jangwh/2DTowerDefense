@@ -60,12 +60,11 @@ namespace TowerDefense
         }
         void EnemySpawn()
         {
-            //TODO: Enemy 스폰 코루틴으로 만들기
             if (tile == null) return;
             int ranEnemy = Random.Range(0, enemies.Length);
             int ranTileY = Random.Range(-tile.genDisty, tile.genDisty + 1);
 
-            LeanPool.Spawn(enemies[ranEnemy], new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 0.5f), Quaternion.identity);
+            LeanPool.Spawn(enemies[ranEnemy], new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f), Quaternion.identity);
         }
     }
 }

@@ -8,7 +8,7 @@ using Lean.Pool;
 namespace TowerDefense {
     public class DropTower : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        //TODO : 드랍한 위치는 canvas지만 world좌표로 나오게 수정
+        //TODO : 생성된 프리펨이 팔만 보이는 현상 수정
         public Image containerImage;
         public Image receivingImage;
         public RectTransform rect;
@@ -41,6 +41,7 @@ namespace TowerDefense {
                     Vector3 spawnPosition = tileGroup.transform.position + GetWorldPositon(rect); // 드롭된 위치
                     
                     spawnPosition.z = 0;
+
                     LeanPool.Spawn(prefab, Camera.main.ScreenToWorldPoint(spawnPosition) , Quaternion.Euler(0, 180, 0), transform);
                     containerImage.color = new Color(0, 0, 0, 0);
                 }

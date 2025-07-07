@@ -10,6 +10,7 @@ namespace TowerDefense
     {
 
         Animator animator;
+        DropTower dropTower;
 
         public float rayDistance;
         public string charName;
@@ -22,6 +23,7 @@ namespace TowerDefense
         void Awake()
         {
             animator = GetComponent<Animator>();
+            dropTower = GetComponentInParent<DropTower>();
         }
         protected override void Start()
         {
@@ -30,7 +32,7 @@ namespace TowerDefense
 
         void Update()
         {
-            Vector2 rayStartpos = new Vector2(transform.position.x, transform.position.y + 0.2f);
+            Vector2 rayStartpos = new Vector2(transform.position.x, transform.position.y);
             RaycastHit2D rayHit = Physics2D.Raycast(rayStartpos, Vector2.right, rayDistance);
             Debug.DrawRay(rayStartpos, Vector2.right * rayDistance, new Color(0, 1, 0, 1), rayDistance);
 
@@ -78,7 +80,14 @@ namespace TowerDefense
                 isDie = true;
                 animator.SetBool("isDie", isDie);
                 StartCoroutine(DieAnimation());
+                Invoke("Revive", 1f);
             }
+        }
+        void Revive()
+        {
+            currentHp = maxHp;
+            isDie = false;
+            dropTower.receivingImage.overrideSprite = null;
         }
         IEnumerator DieAnimation()
         {
