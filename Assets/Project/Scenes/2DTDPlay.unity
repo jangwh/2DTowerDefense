@@ -535,7 +535,7 @@ GameObject:
   - component: {fileID: 126467232}
   - component: {fileID: 126467231}
   m_Layer: 5
-  m_Name: Bow
+  m_Name: Archer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1182,7 +1182,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Priest : 5'
+  m_Text: "\uC0AC\uC81C : \uAC00\uACA9"
 --- !u!222 &303019090
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1219,7 +1219,7 @@ GameObject:
   - component: {fileID: 313595714}
   - component: {fileID: 313595716}
   m_Layer: 5
-  m_Name: SwordText
+  m_Name: KnightText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1277,7 +1277,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Sword : 10'
+  m_Text: "\uAE30\uC0AC : \uAC00\uACA9"
 --- !u!222 &313595715
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2652,7 +2652,7 @@ GameObject:
   - component: {fileID: 947590993}
   - component: {fileID: 947590992}
   m_Layer: 5
-  m_Name: SwordBox
+  m_Name: KnightBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2859,6 +2859,9 @@ MonoBehaviour:
   MaxLifeCount: 20
   currentLifeCount: 20
   coin: 0
+  knightCoin: 10
+  archerCoin: 15
+  priestCoin: 5
 --- !u!4 &1010069581
 Transform:
   m_ObjectHideFlags: 0
@@ -3086,7 +3089,7 @@ GameObject:
   - component: {fileID: 1070857966}
   - component: {fileID: 1070857965}
   m_Layer: 5
-  m_Name: BowBox
+  m_Name: ArcherBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3198,6 +3201,9 @@ MonoBehaviour:
   Round: {fileID: 1498265840}
   LifeCount: {fileID: 1850639042}
   Coin: {fileID: 1619161383}
+  KnightText: {fileID: 313595714}
+  ArcherText: {fileID: 1296870775}
+  PriestText: {fileID: 303019089}
 --- !u!1 &1091185374
 GameObject:
   m_ObjectHideFlags: 0
@@ -3511,7 +3517,7 @@ GameObject:
   - component: {fileID: 1160263232}
   - component: {fileID: 1160263231}
   m_Layer: 5
-  m_Name: Sword
+  m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3854,7 +3860,7 @@ GameObject:
   - component: {fileID: 1296870775}
   - component: {fileID: 1296870777}
   m_Layer: 5
-  m_Name: BowText
+  m_Name: ArcherText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3912,7 +3918,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Archer: 15'
+  m_Text: "\uAD81\uC218: \uAC00\uACA9"
 --- !u!222 &1296870776
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3949,7 +3955,7 @@ GameObject:
   - component: {fileID: 1299013522}
   - component: {fileID: 1299013521}
   m_Layer: 5
-  m_Name: Rod
+  m_Name: Priest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4337,7 +4343,7 @@ GameObject:
   - component: {fileID: 1466429324}
   - component: {fileID: 1466429323}
   m_Layer: 5
-  m_Name: RodBox
+  m_Name: PriestBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 95000013227593822}
   - component: {fileID: 4362142624585334233}
   m_Layer: 0
-  m_Name: Peasant
+  m_Name: Archer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
   lastAttackTime: 0
   attackInterval: 1.5
   rayDistance: 10
-  charName: Peasant
+  charName: Archer
   prayTime: 0
 --- !u!95 &95000013227593822
 Animator:

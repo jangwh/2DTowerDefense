@@ -48,12 +48,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
-  currentHp: 0
+  currentHp: 100
   damage: 10
   lastAttackTime: 0
   attackInterval: 3
   rayDistance: 2.5
-  charName: knight
+  charName: Knight
   prayTime: 0
 --- !u!95 &95000011895321844
 Animator:

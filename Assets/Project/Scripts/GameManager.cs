@@ -7,6 +7,7 @@ namespace TowerDefense
 {
     public class GameManager : MonoBehaviour
     {
+        //TODO : Enemy가 맵의 특정 지점에 도달하였을 때 라이프 감소
         public static GameManager Instance { get; private set; }
 
         public Playerable[] playerables;
@@ -14,9 +15,16 @@ namespace TowerDefense
         public TileGenerator tile;
         public int roundCount = 0;
         public int[] enemyCount;
+
         public int MaxLifeCount;
         public int currentLifeCount;
         public int coin = 0;
+
+        public int knightCoin = 10;
+        public int archerCoin = 15;
+        public int priestCoin = 5;
+
+        public static int priestNum = 1;
 
         Coroutine enemySpawnRoutine;
         Coroutine coinplus;
@@ -55,9 +63,11 @@ namespace TowerDefense
         }
         IEnumerator CoinPlus()
         {
-            WaitForSeconds wait = new WaitForSeconds(1f);
+            float second = 1f;
             while (true)
             {
+                float coinSpeed = second / Mathf.Max(priestNum, 1);
+                WaitForSeconds wait = new WaitForSeconds(coinSpeed);
                 yield return wait;
                 coin++;
             }

@@ -32,7 +32,6 @@ namespace TowerDefense {
             {
                 if (receivingImage.overrideSprite != null)
                     return; // 이미 배치된 경우 무시
-                receivingImage.overrideSprite = dropSprite;
 
                 GameObject prefab = GetPrefabFromSprite(dropSprite);
                 if (prefab != null)
@@ -43,8 +42,34 @@ namespace TowerDefense {
 
                     Vector3 worldPos = Camera.main.ScreenToWorldPoint(spawnPosition);
                     worldPos.z = 0;
-
-                    LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), transform);
+                    switch (prefab.GetComponent<Playerable>().charName)
+                    {
+                        case "Knight":
+                            if (GameManager.Instance.coin >= GameManager.Instance.knightCoin)
+                            {
+                                receivingImage.overrideSprite = dropSprite;
+                                GameManager.Instance.coin -= GameManager.Instance.knightCoin;
+                                LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), transform);
+                            }
+                            break;
+                        case "Archer":
+                            if (GameManager.Instance.coin >= GameManager.Instance.archerCoin)
+                            {
+                                receivingImage.overrideSprite = dropSprite;
+                                GameManager.Instance.coin -= GameManager.Instance.archerCoin;
+                                LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), transform);
+                            }
+                            break;
+                        case "Priest":
+                            if (GameManager.Instance.coin >= GameManager.Instance.priestCoin)
+                            {
+                                receivingImage.overrideSprite = dropSprite;
+                                GameManager.Instance.coin -= GameManager.Instance.priestCoin;
+                                LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), transform);
+                                GameManager.priestNum++;
+                            }
+                            break;
+                    }
                     containerImage.color = new Color(0, 0, 0, 0);
                 }
             }
