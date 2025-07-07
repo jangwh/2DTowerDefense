@@ -39,10 +39,13 @@ namespace TowerDefense {
                 if (prefab != null)
                 {
                     Vector3 spawnPosition = tileGroup.transform.position + GetWorldPositon(rect); // 드롭된 위치
-                    
-                    spawnPosition.z = 0;
 
-                    LeanPool.Spawn(prefab, Camera.main.ScreenToWorldPoint(spawnPosition) , Quaternion.Euler(0, 180, 0), transform);
+                    Mathf.Abs(Camera.main.transform.position.z); 
+
+                    Vector3 worldPos = Camera.main.ScreenToWorldPoint(spawnPosition);
+                    worldPos.z = 0;
+
+                    LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), transform);
                     containerImage.color = new Color(0, 0, 0, 0);
                 }
             }
