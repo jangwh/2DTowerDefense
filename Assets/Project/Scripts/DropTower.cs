@@ -8,7 +8,6 @@ using Lean.Pool;
 namespace TowerDefense {
     public class DropTower : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        //TODO : 생성된 프리펨이 팔만 보이는 현상 수정
         public Image containerImage;
         public Image receivingImage;
         public RectTransform rect;

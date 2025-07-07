@@ -14,8 +14,12 @@ namespace TowerDefense
         public TileGenerator tile;
         public int roundCount = 0;
         public int[] enemyCount;
+        public int MaxLifeCount;
+        public int currentLifeCount;
+        public int coin = 0;
 
         Coroutine enemySpawnRoutine;
+        Coroutine coinplus;
         void Awake()
         {
             if (Instance == null)
@@ -30,7 +34,9 @@ namespace TowerDefense
         }
         void Start()
         {
+            currentLifeCount = MaxLifeCount;
             enemySpawnRoutine  = StartCoroutine(EnemySpawnCoroutine());
+            coinplus = StartCoroutine(CoinPlus());
         }
         void Update()
         {
@@ -47,9 +53,18 @@ namespace TowerDefense
                 }
             }
         }
-        IEnumerator EnemySpawnCoroutine()
+        IEnumerator CoinPlus()
         {
             WaitForSeconds wait = new WaitForSeconds(1f);
+            while (true)
+            {
+                yield return wait;
+                coin++;
+            }
+        }
+        IEnumerator EnemySpawnCoroutine()
+        {
+            WaitForSeconds wait = new WaitForSeconds(5f);
 
             while (true)
             {
