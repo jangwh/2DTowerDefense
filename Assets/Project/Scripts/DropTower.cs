@@ -8,6 +8,7 @@ using Lean.Pool;
 namespace TowerDefense {
     public class DropTower : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
     {
+        //TODO : 판매기능 구현하기
         public Image containerImage;
         public Image receivingImage;
         public RectTransform rect;
@@ -30,10 +31,12 @@ namespace TowerDefense {
             Sprite dropSprite = GetDropSprite(eventData);
             if (dropSprite != null)
             {
+                GameObject prefab = GetPrefabFromSprite(dropSprite);
+
                 if (receivingImage.overrideSprite != null)
                     return; // 이미 배치된 경우 무시
 
-                GameObject prefab = GetPrefabFromSprite(dropSprite);
+                
                 if (prefab != null)
                 {
                     Vector3 spawnPosition = tileGroup.transform.position + GetWorldPositon(rect); // 드롭된 위치

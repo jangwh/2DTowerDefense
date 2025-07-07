@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public Text KnightText;
     public Text ArcherText;
     public Text PriestText;
+    public Text CellText;
 
     void Update()
     {
@@ -23,5 +24,6 @@ public class UIManager : MonoBehaviour
         KnightText.text = $"Knight : {GameManager.Instance.knightCoin}";
         ArcherText.text = $"Archer : {GameManager.Instance.archerCoin}";
         PriestText.text = $"Priest : {GameManager.Instance.priestCoin}";
+        CellText.text = $"판매";
     }
 }
