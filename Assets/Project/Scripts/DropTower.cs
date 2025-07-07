@@ -29,14 +29,50 @@ namespace TowerDefense {
                 return;
 
             Sprite dropSprite = GetDropSprite(eventData);
+            GameObject prefab = GetPrefabFromSprite(dropSprite);
+
             if (dropSprite != null)
             {
-                GameObject prefab = GetPrefabFromSprite(dropSprite);
 
                 if (receivingImage.overrideSprite != null)
-                    return; // 이미 배치된 경우 무시
+                {
+                    // 드롭된 아이템이 없으면 = 판매
+                    if (prefab == null)
+                    {
+                        // 타일 위에 있는 기존 유닛 제거
+                        foreach (Transform child in transform)
+                        {
+                            if (child.GetComponent<Playerable>() != null)
+                            {
+                                string name = child.GetComponent<Playerable>().charName;
+                                LeanPool.Despawn(child.gameObject); // 기존 유닛 제거
 
-                
+                                // 코인 환급
+                                switch (name)
+                                {
+                                    case "Knight":
+                                        GameManager.Instance.coin += GameManager.Instance.knightCoin / 2;
+                                        break;
+                                    case "Archer":
+                                        GameManager.Instance.coin += GameManager.Instance.archerCoin / 2;
+                                        break;
+                                    case "Priest":
+                                        GameManager.Instance.coin += GameManager.Instance.priestCoin / 2;
+                                        GameManager.priestNum--;
+                                        break;
+                                }
+
+                                receivingImage.overrideSprite = null;
+                                break;
+                            }
+                        }
+                        return;
+                    }
+
+                    // 이미 타워가 있고, 또 다른 유닛을 드롭하려 하면 무시
+                    return;
+                }
+
                 if (prefab != null)
                 {
                     Vector3 spawnPosition = tileGroup.transform.position + GetWorldPositon(rect); // 드롭된 위치
