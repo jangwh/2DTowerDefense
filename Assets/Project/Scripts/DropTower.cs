@@ -8,7 +8,6 @@ using Lean.Pool;
 namespace TowerDefense {
     public class DropTower : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        //TODO : 판매기능 구현하기
         public Image containerImage;
         public Image receivingImage;
         public RectTransform rect;
