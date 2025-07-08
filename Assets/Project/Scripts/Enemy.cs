@@ -15,6 +15,7 @@ namespace TowerDefense
         public float rayDistance;
         public string charName;
         private bool isAttack = false;
+        private bool isDead = false;
 
         void Awake()
         {
@@ -83,11 +84,26 @@ namespace TowerDefense
         }
         void Die()
         {
+            if (isDead) return;
             if (currentHp <= 0)
             {
+                isDead = true;
+                switch (charName)
+                {
+                    case "Zombie":
+                        GameManager.Instance.score += 10;
+                        break;
+                    case "Ogre":
+                        GameManager.Instance.score += 30;
+                        break;
+                    case "Dreadnought":
+                        GameManager.Instance.score += 50;
+                        break;
+                }
                 moveSpeed = 0f;
                 animator.SetInteger("State", 9);
                 StartCoroutine(DieAnimation());
+                
                 Invoke("Revive", 1.5f);
             }
         }
@@ -95,6 +111,7 @@ namespace TowerDefense
         {
             currentHp = maxHp;
             animator.SetInteger("State", 0);
+            isDead = false;
         }
         IEnumerator DieAnimation()
         {

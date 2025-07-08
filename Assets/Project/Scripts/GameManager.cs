@@ -8,7 +8,8 @@ namespace TowerDefense
 {
     public class GameManager : MonoBehaviour
     {
-        //TODO : 다음 라운드 시작할 시 타워 전부 Desapwn
+        //TODO : Scene 구현 해서 시작, 플레이, 엔드 나누고 골드는 계속 유지되고 점수는 초기화
+        //TODO : 시작 메뉴에 상점 구현하기
         public static GameManager Instance { get; private set; }
 
         public Playerable[] playerables;
@@ -27,6 +28,7 @@ namespace TowerDefense
         public int archerCoin = 15;
         public int priestCoin = 5;
         public int gold;
+        public int score = 0;
 
         public int enemySpawnCount;
 
