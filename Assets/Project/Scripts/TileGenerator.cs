@@ -1,6 +1,7 @@
-using UnityEngine;
+ï»¿using Lean.Pool;
 using System.Collections.Generic;
 using TowerDefense;
+using UnityEngine;
 
 namespace TowerDefense
 {
@@ -10,7 +11,7 @@ namespace TowerDefense
         Grid grid;
         Transform tileGroup;
         public GameObject[] tilePrefab;
-        //¼¿¸¶´Ù 1°³ÀÇ Å¸ÀÏÀ» »ı¼ºÇÏ°í, ±× Å¸ÀÏ °ÔÀÓ ¿ÀºêÁ§Æ® ÂüÁ¶¸¦ À¯ÁöÇÒ Dictionary
+        //ì…€ë§ˆë‹¤ 1ê°œì˜ íƒ€ì¼ì„ ìƒì„±í•˜ê³ , ê·¸ íƒ€ì¼ ê²Œì„ ì˜¤ë¸Œì íŠ¸ ì°¸ì¡°ë¥¼ ìœ ì§€í•  Dictionary
         private Dictionary<Vector3Int, GameObject> tiles = new Dictionary<Vector3Int, GameObject>();
         public int genDistx = 5;
         public int genDisty = 5;
@@ -29,16 +30,15 @@ namespace TowerDefense
         }
         void Start()
         {
-            lastCell = grid.WorldToCell(tileGroup.position); //ÃÊ±â À§Ä¡ ¼¼ÆÃ
-            GenerteTiles(); //ÃÊ±â Å¸ÀÏ »ı¼º
+            lastCell = grid.WorldToCell(tileGroup.position); //ì´ˆê¸° ìœ„ì¹˜ ì„¸íŒ…
+            GenerteTiles(); //ì´ˆê¸° íƒ€ì¼ ìƒì„±
+            GenerteEndTiles(); //ë¼ì´í”„ íƒ€ì¼ ìƒì„±
         }
-        //Å¸ÀÏ »ı¼º
+        //íƒ€ì¼ ìƒì„±
         void GenerteTiles()
         {
-            //cell ±âÁØ, xÃà -5ºÎÅÍ +5±îÁö ¹İº¹
             for (int x = -genDistx; x <= genDistx; x++)
             {
-                //cell±âÁØ yÃà -5ºÎÅÍ +5±îÁö ¹İº¹
                 for (int y = -genDisty; y <= genDisty; y++)
                 {
                     Vector3Int cell = new Vector3Int(lastCell.x + x, lastCell.y + y);
@@ -47,21 +47,34 @@ namespace TowerDefense
                         if (x != genDistx)
                         {
                             Vector3 genPos = grid.GetCellCenterWorld(cell);
-                            genPos.z = 10; //Å¸ÀÏÀ» »ìÂ© È­¸é µÚÂÊÀ¸·Î ¹Ğ¾îÁÜ
+                            genPos.z = 10; //íƒ€ì¼ì„ ì‚´ì§¤ í™”ë©´ ë’¤ìª½ìœ¼ë¡œ ë°€ì–´ì¤Œ
                             GameObject tile = Instantiate(tilePrefab[0], genPos, Quaternion.identity);
                             tile.transform.SetParent(transform);
-                            tiles.Add(cell, tile); //¸¸¾à Å°°¡ Áßº¹ÀÌ µÉ °æ¿ì excetion ¹ß»ı }
+                            tiles.Add(cell, tile); //ë§Œì•½ í‚¤ê°€ ì¤‘ë³µì´ ë  ê²½ìš° excetion ë°œìƒ }
                         }
                         else
                         {
                             Vector3 genPos = grid.GetCellCenterWorld(cell);
-                            genPos.z = 10; //Å¸ÀÏÀ» »ìÂ© È­¸é µÚÂÊÀ¸·Î ¹Ğ¾îÁÜ
+                            genPos.z = 10; //íƒ€ì¼ì„ ì‚´ì§¤ í™”ë©´ ë’¤ìª½ìœ¼ë¡œ ë°€ì–´ì¤Œ
                             GameObject tile = Instantiate(tilePrefab[1], genPos, Quaternion.identity);
                             tile.transform.SetParent(transform);
-                            tiles.Add(cell, tile); //¸¸¾à Å°°¡ Áßº¹ÀÌ µÉ °æ¿ì excetion ¹ß»ı }
+                            tiles.Add(cell, tile); //ë§Œì•½ í‚¤ê°€ ì¤‘ë³µì´ ë  ê²½ìš° excetion ë°œìƒ }
                         }
                     }
                 }
+            }
+        }
+        void GenerteEndTiles()
+        {
+            int x = -genDistx - 1;
+            for(int y = -genDisty;y <= genDisty; y++)
+            {
+                Vector3Int cell = new Vector3Int(lastCell.x + x, lastCell.y + y);
+                Vector3 genPos = grid.GetCellCenterWorld(cell);
+                genPos.z = 10; //íƒ€ì¼ì„ ì‚´ì§¤ í™”ë©´ ë’¤ìª½ìœ¼ë¡œ ë°€ì–´ì¤Œ
+                GameObject tile = Instantiate(tilePrefab[2], genPos, Quaternion.identity);
+                tile.transform.SetParent(transform);
+                tiles.Add(cell, tile); //ë§Œì•½ í‚¤ê°€ ì¤‘ë³µì´ ë  ê²½ìš° excetion ë°œìƒ }
             }
         }
     }

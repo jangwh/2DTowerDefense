@@ -101,5 +101,13 @@ namespace TowerDefense
             yield return new WaitForSeconds(1.5f);
             LeanPool.Despawn(this);
         }
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("LifeZone"))
+            {
+                GameManager.Instance.currentLifeCount--;
+                StartCoroutine(DieAnimation());
+            }
+        }
     }
 }

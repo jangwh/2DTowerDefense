@@ -80,7 +80,6 @@ namespace TowerDefense
                 isDie = true;
                 animator.SetBool("isDie", isDie);
                 StartCoroutine(DieAnimation());
-                Invoke("Revive", 1f);
             }
         }
         void Revive()
@@ -92,6 +91,7 @@ namespace TowerDefense
         IEnumerator DieAnimation()
         {
             yield return new WaitForSeconds(1.5f);
+            Revive();
             LeanPool.Despawn(this);
         }
     }

@@ -7,10 +7,9 @@ namespace TowerDefense
 {
     public class GameManager : MonoBehaviour
     {
-        //TODO : Enemy가 맵의 특정 지점에 도달하였을 때 라이프 감소
         //TODO : 몬스터를 다 처치하면 시간정지, 다음 라운드 버튼 만들고 시작할 시 각종값들 초기화
         //TODO : 다음 라운드 갈시 골드 추가
-        //TODO : 라운드 별로 나오는 Enemy가 다르게 변경 + 특정 라운드에서 보스몬스터가 나오게 설정
+        //TODO : 특정 라운드에서 보스몬스터가 나오게 설정
         public static GameManager Instance { get; private set; }
 
         public Playerable[] playerables;
@@ -78,6 +77,7 @@ namespace TowerDefense
         IEnumerator EnemySpawnCoroutine()
         {
             WaitForSeconds wait = new WaitForSeconds(5f);
+            yield return wait;
 
             while (true)
             {
@@ -92,7 +92,25 @@ namespace TowerDefense
             int ranEnemy = Random.Range(0, enemies.Length);
             int ranTileY = Random.Range(-tile.genDisty, tile.genDisty + 1);
 
-            LeanPool.Spawn(enemies[ranEnemy], new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f), Quaternion.identity);
+            if (roundCount == 0)
+            {
+                ObjectPool.Instance.SpawnZombie(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f)); 
+            }
+            else if (roundCount == 1)
+            {
+                if(ranEnemy == 0)
+                {
+                    ObjectPool.Instance.SpawnZombie(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+                }
+                else
+                {
+                    ObjectPool.Instance.SpawnOrc(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+                }
+            }
+            else if (roundCount == 2)
+            {
+                ObjectPool.Instance.SpawnOrc(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+            }
         }
     }
 }

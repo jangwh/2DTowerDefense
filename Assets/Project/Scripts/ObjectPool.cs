@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Lean.Pool;
@@ -6,7 +6,7 @@ using TowerDefense;
 
 public class ObjectPool : MonoBehaviour
 {
-    public ObjectPool Instance { get; private set; }
+    public static ObjectPool Instance { get; private set; }
 
     public Playerable knightPrefabs;
     public Playerable peasantPrefabs;
@@ -14,14 +14,6 @@ public class ObjectPool : MonoBehaviour
 
     public Enemy zombiePrefabs;
     public Enemy orcPrefabs;
-
-
-    public List<Playerable> knightPrefabsPool = new List<Playerable>();
-    public List<Playerable> peasantPrefabsPool = new List<Playerable>();
-    public List<Playerable> priestPrefabsPool = new List<Playerable>();
-
-    public List<Enemy> zombiePool = new List<Enemy>();
-    public List<Enemy> orcPool = new List<Enemy>();
 
     void Awake()
     {
@@ -34,38 +26,28 @@ public class ObjectPool : MonoBehaviour
             DestroyImmediate(this);
             return;
         }
+
+        PrewarmPool(knightPrefabs, 50);
+        PrewarmPool(peasantPrefabs, 50);
+        PrewarmPool(priestPrefabs, 50);
+        PrewarmPool(zombiePrefabs, 50);
+        PrewarmPool(orcPrefabs, 50);
     }
-    void Start()
+    void PrewarmPool<T>(T prefab, int count) where T : Component
     {
-        for(int i = 0;  i < 50; i++)
+        for (int i = 0; i < count; i++)
         {
-            Playerable knight = Instantiate(knightPrefabs, transform);
-            knight.gameObject.SetActive(false);
-            knightPrefabsPool.Add(knight);
+            var obj = LeanPool.Spawn(prefab, Vector3.zero, Quaternion.identity);
+            obj.gameObject.SetActive(false);
+            LeanPool.Despawn(obj);
         }
-        for (int i = 0; i < 50; i++)
-        {
-            Playerable peasant = Instantiate(peasantPrefabs, transform);
-            peasant.gameObject.SetActive(false);
-            peasantPrefabsPool.Add(peasant);
-        }
-        for (int i = 0; i < 50; i++)
-        {
-            Playerable priest = Instantiate(priestPrefabs, transform);
-            priest.gameObject.SetActive(false);
-            priestPrefabsPool.Add(priest);
-        }
-        for (int i = 0; i < 50; i++)
-        {
-            Enemy zombie = Instantiate(zombiePrefabs, transform);
-            zombie.gameObject.SetActive(false);
-            zombiePool.Add(zombie);
-        }
-        for (int i = 0; i < 50; i++)
-        {
-            Enemy orc = Instantiate(orcPrefabs, transform);
-            orc.gameObject.SetActive(false);
-            orcPool.Add(orc);
-        }
+    }
+    public Enemy SpawnZombie(Vector3 position)
+    {
+        return LeanPool.Spawn(zombiePrefabs, position, Quaternion.identity);
+    }
+    public Enemy SpawnOrc(Vector3 position)
+    {
+        return LeanPool.Spawn(orcPrefabs, position, Quaternion.identity);
     }
 }

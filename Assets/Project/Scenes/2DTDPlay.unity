@@ -1875,7 +1875,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -88}
+  m_AnchoredPosition: {x: 150, y: -88}
   m_SizeDelta: {x: 1600, y: 850.2113}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &668722378
@@ -2562,6 +2562,7 @@ MonoBehaviour:
   tilePrefab:
   - {fileID: 5251020563711390802, guid: 5314addffac38fd4dab127d65a8bb69d, type: 3}
   - {fileID: 5646542531360191355, guid: a51ab352c2a830f43b566219934b8ebc, type: 3}
+  - {fileID: 288090525656344966, guid: ce7bdd63e8a642244b9802b491b6316b, type: 3}
   genDistx: 4
   genDisty: 2
 --- !u!156049354 &885847781
@@ -3875,11 +3876,6 @@ MonoBehaviour:
   priestPrefabs: {fileID: 3966130164802700637, guid: de1445eea797d0e4e9293fd482f89b3c, type: 3}
   zombiePrefabs: {fileID: 5618668257294069292, guid: 53171db4588f8d14384f300794de4da4, type: 3}
   orcPrefabs: {fileID: 8037045686348457057, guid: f66a4ad77973e1a41b9862637f866a13, type: 3}
-  knightPrefabsPool: []
-  peasantPrefabsPool: []
-  priestPrefabsPool: []
-  zombiePool: []
-  orcPool: []
 --- !u!4 &1220866279
 Transform:
   m_ObjectHideFlags: 0
