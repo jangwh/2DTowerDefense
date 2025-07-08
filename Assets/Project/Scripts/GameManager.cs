@@ -8,8 +8,6 @@ namespace TowerDefense
     public class GameManager : MonoBehaviour
     {
         //TODO : 몬스터를 다 처치하면 시간정지, 다음 라운드 버튼 만들고 시작할 시 각종값들 초기화
-        //TODO : 다음 라운드 갈시 골드 추가
-        //TODO : 특정 라운드에서 보스몬스터가 나오게 설정
         public static GameManager Instance { get; private set; }
 
         public Playerable[] playerables;
@@ -25,6 +23,7 @@ namespace TowerDefense
         public int knightCoin = 10;
         public int archerCoin = 15;
         public int priestCoin = 5;
+        public int gold;
 
         public static int priestNum = 1;
 
@@ -55,8 +54,9 @@ namespace TowerDefense
                 if (enemySpawnRoutine != null)
                 {
                     StopCoroutine(enemySpawnRoutine);
+                    enemySpawnRoutine = null;
                 }
-                roundCount++;
+                //roundCount++;//roundCount++다른곳에서 수행
                 if (roundCount < enemyCount.Length)
                 {
                     enemySpawnRoutine = StartCoroutine(EnemySpawnCoroutine());
@@ -110,6 +110,10 @@ namespace TowerDefense
             else if (roundCount == 2)
             {
                 ObjectPool.Instance.SpawnOrc(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+            }
+            else if ( roundCount == 3)
+            {
+                ObjectPool.Instance.SpawnDreadnought(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
             }
         }
     }

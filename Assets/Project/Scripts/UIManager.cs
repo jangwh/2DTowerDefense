@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     {
         Round.text = $"Round {GameManager.Instance.roundCount + 1}/{GameManager.Instance.enemyCount.Length}";
         LifeCount.text = $"Life {GameManager.Instance.currentLifeCount}/{GameManager.Instance.MaxLifeCount}";
-        Coin.text = $"코인 : {GameManager.Instance.coin}";
+        Coin.text = $"코인 : {GameManager.Instance.coin}/ 골드 : {GameManager.Instance.gold}";
 
         KnightText.text = $"Knight : {GameManager.Instance.knightCoin}";
         ArcherText.text = $"Archer : {GameManager.Instance.archerCoin}";
