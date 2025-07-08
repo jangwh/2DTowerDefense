@@ -80,6 +80,10 @@ namespace TowerDefense
                 isDie = true;
                 animator.SetBool("isDie", isDie);
                 StartCoroutine(DieAnimation());
+                if(charName == "Priest")
+                {
+                    GameManager.priestNum--;
+                }
             }
         }
         void Revive()

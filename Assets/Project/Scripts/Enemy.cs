@@ -99,6 +99,7 @@ namespace TowerDefense
         IEnumerator DieAnimation()
         {
             yield return new WaitForSeconds(1.5f);
+            GameManager.Instance.enemySpawnCount--;
             LeanPool.Despawn(this);
         }
         void OnTriggerEnter2D(Collider2D other)

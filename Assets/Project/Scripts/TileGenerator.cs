@@ -10,6 +10,7 @@ namespace TowerDefense
     {
         Grid grid;
         Transform tileGroup;
+        public Transform towerParent;
         public GameObject[] tilePrefab;
         //셀마다 1개의 타일을 생성하고, 그 타일 게임 오브젝트 참조를 유지할 Dictionary
         private Dictionary<Vector3Int, GameObject> tiles = new Dictionary<Vector3Int, GameObject>();

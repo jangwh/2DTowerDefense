@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Lean.Pool;
+using UnityEngine.UI;
 
 namespace TowerDefense
 {
     public class GameManager : MonoBehaviour
     {
-        //TODO : 몬스터를 다 처치하면 시간정지, 다음 라운드 버튼 만들고 시작할 시 각종값들 초기화
+        //TODO : 다음 라운드 시작할 시 타워 전부 Desapwn
         public static GameManager Instance { get; private set; }
 
         public Playerable[] playerables;
         public Enemy[] enemies;
         public TileGenerator tile;
+        public DropTower[] TowerPos;
+        public Button nextRoundBtn;
         public int roundCount = 0;
         public int[] enemyCount;
 
@@ -24,6 +27,8 @@ namespace TowerDefense
         public int archerCoin = 15;
         public int priestCoin = 5;
         public int gold;
+
+        public int enemySpawnCount;
 
         public static int priestNum = 1;
 
@@ -56,11 +61,15 @@ namespace TowerDefense
                     StopCoroutine(enemySpawnRoutine);
                     enemySpawnRoutine = null;
                 }
-                //roundCount++;//roundCount++다른곳에서 수행
                 if (roundCount < enemyCount.Length)
                 {
                     enemySpawnRoutine = StartCoroutine(EnemySpawnCoroutine());
                 }
+            }
+            if(enemySpawnCount == 0 && enemyCount[roundCount] <= 0)
+            {
+                nextRoundBtn.gameObject.SetActive(true);
+                Time.timeScale = 0f;
             }
         }
         IEnumerator CoinPlus()
@@ -83,6 +92,7 @@ namespace TowerDefense
             {
                 EnemySpawn();
                 enemyCount[roundCount]--;
+                enemySpawnCount++;
                 yield return wait;
             }
         }
@@ -115,6 +125,39 @@ namespace TowerDefense
             {
                 ObjectPool.Instance.SpawnDreadnought(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
             }
+        }
+        public void OnNextRound()
+        {
+            // 안전하게 Despawn 하도록 복사본 사용
+            List<GameObject> toDespawn = new List<GameObject>();
+            
+            foreach(DropTower dropTower in TowerPos)
+            {
+                dropTower.receivingImage.overrideSprite = null;
+            }
+
+            foreach (Transform child in tile.towerParent)
+            {
+                if (child.GetComponent<Playerable>() != null)
+                {
+                    toDespawn.Add(child.gameObject);
+                }
+            }
+            foreach (GameObject obj in toDespawn)
+            {
+                string name = obj.GetComponent<Playerable>().charName;
+                LeanPool.Despawn(obj);
+                if (name == "Priest")
+                {
+                    priestNum--;
+                }
+            }
+            roundCount++;
+            Time.timeScale = 1f;
+            gold += 100;
+            coin = 0;
+            
+            nextRoundBtn.gameObject.SetActive(false);
         }
     }
 }

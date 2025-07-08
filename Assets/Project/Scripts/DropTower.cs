@@ -60,7 +60,6 @@ namespace TowerDefense {
                                         GameManager.priestNum--;
                                         break;
                                 }
-
                                 receivingImage.overrideSprite = null;
                                 break;
                             }
@@ -87,7 +86,7 @@ namespace TowerDefense {
                             {
                                 receivingImage.overrideSprite = dropSprite;
                                 GameManager.Instance.coin -= GameManager.Instance.knightCoin;
-                                LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), transform);
+                                LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
                             }
                             break;
                         case "Archer":
@@ -95,7 +94,7 @@ namespace TowerDefense {
                             {
                                 receivingImage.overrideSprite = dropSprite;
                                 GameManager.Instance.coin -= GameManager.Instance.archerCoin;
-                                LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), transform);
+                                LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
                             }
                             break;
                         case "Priest":
@@ -103,7 +102,7 @@ namespace TowerDefense {
                             {
                                 receivingImage.overrideSprite = dropSprite;
                                 GameManager.Instance.coin -= GameManager.Instance.priestCoin;
-                                LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), transform);
+                                LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
                                 GameManager.priestNum++;
                             }
                             break;
