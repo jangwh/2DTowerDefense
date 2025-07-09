@@ -58,7 +58,7 @@ namespace TowerDefense
         {
             bool isRoundValid = roundCount >= 0 && roundCount < enemyCount.Length;
 
-            if (enemySpawnCount == 0 && (roundCount == enemyCount.Length))
+            if (enemySpawnCount == 0 && (roundCount  == enemyCount.Length))
             {
                 isWin = true;
                 SceneManager.LoadScene(2);
@@ -147,8 +147,7 @@ namespace TowerDefense
         }
         public void OnNextRound()
         {
-            roundCount++;
-            if (roundCount + 1 >= enemyCount.Length)
+            if (roundCount + 1 > enemyCount.Length)
             {
                 return;
             }
@@ -176,6 +175,7 @@ namespace TowerDefense
                     priestNum--;
                 }
             }
+            roundCount++;
             Time.timeScale = 1f;
             ScoreSave.currentGold += 100;
             coin = 0;

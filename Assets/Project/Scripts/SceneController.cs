@@ -19,6 +19,7 @@ public class SceneController : MonoBehaviour
         public void OnGameRetry()
         {
             ScoreSave.SaveScore();
+            ScoreSave.SaveGold();
             SceneManager.LoadScene(0);
         }
     }

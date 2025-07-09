@@ -26,7 +26,7 @@ namespace TowerDefense
         {
             int bestScore = ScoreSave.GetBestScore();
             BestScoreText.text = $"최고 점수 : {bestScore}점";
-            int gold = ScoreSave.GetGold();
+            gold = ScoreSave.GetGold();
             Gold.text = $"소지금 : {gold}";
             KnightPrice.text = $"기사 공격력 강화 : {knightPrice}";
             ArcherPrice.text = $"궁수 공격력 강화 : {archerPrice}";
@@ -38,24 +38,39 @@ namespace TowerDefense
         {
             if (gold > knightPrice)
             {
+                print("기사 강화 완료");
                 GameManager.Instance.playerables[0].damage += 5;
                 gold -= knightPrice;
+            }
+            else
+            {
+                print("기사 강화 돈부족");
             }
         }
         public void OnArcherUpgrade()
         {
             if (gold > archerPrice)
             {
+                print("궁수 강화 완료");
                 GameManager.Instance.playerables[1].damage += 5;
                 gold -= archerPrice;
+            }
+            else
+            {
+                print("궁수 강화 돈부족");
             }
         }
         public void OnPriestUpgrade()
         {
             if (gold > priestPrice)
             {
+                print("사제 강화 완료");
                 GameManager.Instance.playerables[2].maxHp += 5;
                 gold -= priestPrice;
+            }
+            else
+            {
+                print("사제 강화 돈부족");
             }
         }
         public void OnShopMenu()
