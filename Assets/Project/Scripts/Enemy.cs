@@ -103,15 +103,14 @@ namespace TowerDefense
                 moveSpeed = 0f;
                 animator.SetInteger("State", 9);
                 StartCoroutine(DieAnimation());
-
-                Invoke("Revive", 1.5f);
             }
         }
-        void Revive()
+        public void Init()
         {
             currentHp = maxHp;
-            animator.SetInteger("State", 0);
             isDead = false;
+            animator.SetInteger("State", 0);
+            moveSpeed = 0.5f;
         }
         IEnumerator DieAnimation()
         {
