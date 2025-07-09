@@ -41,7 +41,7 @@ namespace TowerDefense
             {
                 GoSpeed();
             }
-            if (Time.time > lastAttackTime + attackInterval)
+            if ((Time.time > lastAttackTime + attackInterval) && !isDead)
             {
                 moveSpeed = 0f;
                 Attack(rayHit);
@@ -88,8 +88,6 @@ namespace TowerDefense
             if (currentHp <= 0)
             {
                 isDead = true;
-                moveSpeed = 0f;
-                animator.SetInteger("State", 9);
                 switch (charName)
                 {
                     case "Zombie":
@@ -102,7 +100,10 @@ namespace TowerDefense
                         ScoreSave.currentScore += 50;
                         break;
                 }
+                moveSpeed = 0f;
+                animator.SetInteger("State", 9);
                 StartCoroutine(DieAnimation());
+
                 Invoke("Revive", 1.5f);
             }
         }
@@ -114,7 +115,7 @@ namespace TowerDefense
         }
         IEnumerator DieAnimation()
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1.5f);
             GameManager.Instance.enemySpawnCount--;
             LeanPool.Despawn(this);
         }
