@@ -892,6 +892,112 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675926635}
   m_CullTransparentMesh: 1
+--- !u!1 &717992434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 717992436}
+  - component: {fileID: 717992435}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &717992435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717992434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946f38b87709bff498ce7a05a28edaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerables:
+  - {fileID: 5492949769662081397, guid: 83685e8abf8e1e740a867f28c00bfc3c, type: 3}
+  - {fileID: 9029390794795843850, guid: 5d788ea68cca05e45baf797ccccef6dc, type: 3}
+  - {fileID: 3966130164802700637, guid: de1445eea797d0e4e9293fd482f89b3c, type: 3}
+  enemies:
+  - {fileID: 5618668257294069292, guid: 53171db4588f8d14384f300794de4da4, type: 3}
+  - {fileID: 8037045686348457057, guid: f66a4ad77973e1a41b9862637f866a13, type: 3}
+  - {fileID: -4093636030382705083, guid: 2287a790bfe7322409f436d06eef2666, type: 3}
+  tile: {fileID: 0}
+  TowerPos:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nextRoundBtn: {fileID: 0}
+  roundCount: 0
+  enemyCount: 05000000080000000a00000003000000
+  MaxLifeCount: 20
+  currentLifeCount: 20
+  coin: 0
+  knightCoin: 10
+  archerCoin: 15
+  priestCoin: 5
+  enemySpawnCount: 0
+  isWin: 0
+  isDefeat: 0
+--- !u!4 &717992436
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717992434}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &722889936
 GameObject:
   m_ObjectHideFlags: 0
@@ -3013,3 +3119,4 @@ SceneRoots:
   - {fileID: 409727003}
   - {fileID: 219815620}
   - {fileID: 1002489421}
+  - {fileID: 717992436}
