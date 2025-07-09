@@ -66,7 +66,7 @@ namespace TowerDefense
         }
         void Attack(RaycastHit2D ray)
         {
-            if (ray.collider != null)
+            if (ray.collider != null && isDead == false)
             {
                 //Debug.Log("Enemy Ray Hit: " + ray.collider.name);
 
@@ -88,22 +88,21 @@ namespace TowerDefense
             if (currentHp <= 0)
             {
                 isDead = true;
+                moveSpeed = 0f;
+                animator.SetInteger("State", 9);
                 switch (charName)
                 {
                     case "Zombie":
-                        GameManager.Instance.score += 10;
+                        ScoreSave.currentScore += 10;
                         break;
                     case "Ogre":
-                        GameManager.Instance.score += 30;
+                        ScoreSave.currentScore += 30;
                         break;
                     case "Dreadnought":
-                        GameManager.Instance.score += 50;
+                        ScoreSave.currentScore += 50;
                         break;
                 }
-                moveSpeed = 0f;
-                animator.SetInteger("State", 9);
                 StartCoroutine(DieAnimation());
-                
                 Invoke("Revive", 1.5f);
             }
         }
@@ -115,7 +114,7 @@ namespace TowerDefense
         }
         IEnumerator DieAnimation()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(2f);
             GameManager.Instance.enemySpawnCount--;
             LeanPool.Despawn(this);
         }

@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Lean.Pool;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace TowerDefense
 {
     public class GameManager : MonoBehaviour
     {
-        //TODO : Scene 구현 해서 시작, 플레이, 엔드 나누고 골드는 계속 유지되고 점수는 초기화
-        //TODO : 시작 메뉴에 상점 구현하기
         public static GameManager Instance { get; private set; }
 
         public Playerable[] playerables;
@@ -27,10 +26,10 @@ namespace TowerDefense
         public int knightCoin = 10;
         public int archerCoin = 15;
         public int priestCoin = 5;
-        public int gold;
-        public int score = 0;
 
         public int enemySpawnCount;
+        public bool isWin = false;
+        public bool isDefeat = false;
 
         public static int priestNum = 1;
 
@@ -41,6 +40,7 @@ namespace TowerDefense
             if (Instance == null)
             {
                 Instance = this;
+                //DontDestroyOnLoad(gameObject);
             }
             else if (Instance != this)
             {
@@ -56,22 +56,35 @@ namespace TowerDefense
         }
         void Update()
         {
-            if (roundCount < enemyCount.Length && enemyCount[roundCount] <= 0)
+            bool isRoundValid = roundCount >= 0 && roundCount < enemyCount.Length;
+
+            if (enemySpawnCount == 0 && (roundCount == enemyCount.Length))
+            {
+                isWin = true;
+                SceneManager.LoadScene(2);
+                return;
+            }
+            if (isRoundValid && enemyCount[roundCount] <= 0)
             {
                 if (enemySpawnRoutine != null)
                 {
                     StopCoroutine(enemySpawnRoutine);
                     enemySpawnRoutine = null;
                 }
-                if (roundCount < enemyCount.Length)
+                if (isRoundValid)
                 {
                     enemySpawnRoutine = StartCoroutine(EnemySpawnCoroutine());
                 }
             }
-            if(enemySpawnCount == 0 && enemyCount[roundCount] <= 0)
+            if (isRoundValid && enemySpawnCount == 0 && enemyCount[roundCount] <= 0)
             {
                 nextRoundBtn.gameObject.SetActive(true);
                 Time.timeScale = 0f;
+            }
+            if (currentLifeCount <= 0)
+            {
+                isDefeat = true;
+                SceneManager.LoadScene(2);
             }
         }
         IEnumerator CoinPlus()
@@ -92,6 +105,10 @@ namespace TowerDefense
 
             while (true)
             {
+                if (roundCount < 0 || roundCount >= enemyCount.Length)
+                {
+                    yield break;
+                }
                 EnemySpawn();
                 enemyCount[roundCount]--;
                 enemySpawnCount++;
@@ -130,6 +147,11 @@ namespace TowerDefense
         }
         public void OnNextRound()
         {
+            roundCount++;
+            if (roundCount + 1 >= enemyCount.Length)
+            {
+                return;
+            }
             // 안전하게 Despawn 하도록 복사본 사용
             List<GameObject> toDespawn = new List<GameObject>();
             
@@ -154,11 +176,9 @@ namespace TowerDefense
                     priestNum--;
                 }
             }
-            roundCount++;
             Time.timeScale = 1f;
-            gold += 100;
+            ScoreSave.currentGold += 100;
             coin = 0;
-            
             nextRoundBtn.gameObject.SetActive(false);
         }
     }

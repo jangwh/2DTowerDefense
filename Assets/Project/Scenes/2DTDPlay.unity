@@ -3138,9 +3138,9 @@ MonoBehaviour:
   knightCoin: 10
   archerCoin: 15
   priestCoin: 5
-  gold: 0
-  score: 0
   enemySpawnCount: 0
+  isWin: 0
+  isDefeat: 0
 --- !u!4 &1010069581
 Transform:
   m_ObjectHideFlags: 0
