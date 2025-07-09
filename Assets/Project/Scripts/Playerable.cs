@@ -20,10 +20,13 @@ namespace TowerDefense
         private bool isDie = false;
         private bool isSpell = false;
 
+        public void Init(DropTower dropTower)
+        {
+            this.dropTower = dropTower;
+        }
         void Awake()
         {
             animator = GetComponent<Animator>();
-            dropTower = GetComponentInParent<DropTower>();
         }
         protected override void Start()
         {
@@ -75,6 +78,7 @@ namespace TowerDefense
         }
         void Die()
         { 
+            if (isDie) return;
             if(currentHp <= 0)
             {
                 isDie = true;

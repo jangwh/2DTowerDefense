@@ -86,7 +86,9 @@ namespace TowerDefense {
                             {
                                 receivingImage.overrideSprite = dropSprite;
                                 GameManager.Instance.coin -= GameManager.Instance.knightCoin;
-                                LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
+                                GameObject playerObj = LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
+                                Playerable player = playerObj.GetComponent<Playerable>();
+                                player.Init(this);
                             }
                             break;
                         case "Archer":
@@ -94,7 +96,9 @@ namespace TowerDefense {
                             {
                                 receivingImage.overrideSprite = dropSprite;
                                 GameManager.Instance.coin -= GameManager.Instance.archerCoin;
-                                LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
+                                GameObject playerObj = LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
+                                Playerable player = playerObj.GetComponent<Playerable>();
+                                player.Init(this);
                             }
                             break;
                         case "Priest":
@@ -102,7 +106,9 @@ namespace TowerDefense {
                             {
                                 receivingImage.overrideSprite = dropSprite;
                                 GameManager.Instance.coin -= GameManager.Instance.priestCoin;
-                                LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
+                                GameObject playerObj = LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
+                                Playerable player = playerObj.GetComponent<Playerable>();
+                                player.Init(this);
                                 GameManager.priestNum++;
                             }
                             break;

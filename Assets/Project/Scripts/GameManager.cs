@@ -121,29 +121,33 @@ namespace TowerDefense
             if (tile == null) return;
             int ranEnemy = Random.Range(0, enemies.Length);
             int ranTileY = Random.Range(-tile.genDisty, tile.genDisty + 1);
-
             if (roundCount == 0)
             {
                 ObjectPool.Instance.SpawnZombie(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f)); 
+                enemies[0].Init();
             }
             else if (roundCount == 1)
             {
                 if(ranEnemy == 0)
                 {
                     ObjectPool.Instance.SpawnZombie(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+                    enemies[0].Init();
                 }
                 else
                 {
                     ObjectPool.Instance.SpawnOrc(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+                    enemies[1].Init();
                 }
             }
             else if (roundCount == 2)
             {
                 ObjectPool.Instance.SpawnOrc(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+                enemies[1].Init();
             }
             else if ( roundCount == 3)
             {
                 ObjectPool.Instance.SpawnDreadnought(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+                enemies[2].Init();
             }
         }
         public void OnNextRound()
