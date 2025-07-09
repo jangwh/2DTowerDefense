@@ -27,6 +27,7 @@ namespace TowerDefense
         }
         void Update()
         {
+            if (isDead) return;
             Vector2 rayStartpos = new Vector2(transform.position.x - 1f, transform.position.y + 1f);
             RaycastHit2D rayHit = Physics2D.Raycast(rayStartpos, Vector2.left, rayDistance);
             Debug.DrawRay(rayStartpos, Vector2.left * rayDistance, new Color(1, 0, 0, 1));

@@ -10,6 +10,7 @@ namespace TowerDefense
     public class GameManager : MonoBehaviour
     {
         //TODO : 사운드 추가
+        //TODO : Enemy 사망 애니메이션 재생 수정
         public static GameManager Instance { get; private set; }
 
         public Playerable[] playerables;
@@ -121,28 +122,34 @@ namespace TowerDefense
             if (tile == null) return;
             int ranEnemy = Random.Range(0, enemies.Length);
             int ranTileY = Random.Range(-tile.genDisty, tile.genDisty + 1);
+            Enemy enemy;
             if (roundCount == 0)
             {
-                ObjectPool.Instance.SpawnZombie(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f)); 
+                enemy = ObjectPool.Instance.SpawnZombie(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+                enemy.Init();
             }
             else if (roundCount == 1)
             {
                 if(ranEnemy == 0)
                 {
-                    ObjectPool.Instance.SpawnZombie(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+                    enemy = ObjectPool.Instance.SpawnZombie(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+                    enemy.Init();
                 }
                 else
                 {
-                    ObjectPool.Instance.SpawnOrc(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+                    enemy = ObjectPool.Instance.SpawnOrc(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+                    enemy.Init();
                 }
             }
             else if (roundCount == 2)
             {
-                ObjectPool.Instance.SpawnOrc(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+                enemy = ObjectPool.Instance.SpawnOrc(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+                enemy.Init();
             }
             else if ( roundCount == 3)
             {
-                ObjectPool.Instance.SpawnDreadnought(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+                enemy = ObjectPool.Instance.SpawnDreadnought(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
+                enemy.Init();
             }
         }
         public void OnNextRound()
