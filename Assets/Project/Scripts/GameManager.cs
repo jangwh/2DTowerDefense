@@ -9,6 +9,7 @@ namespace TowerDefense
 {
     public class GameManager : MonoBehaviour
     {
+        //TODO : 사운드 추가
         public static GameManager Instance { get; private set; }
 
         public Playerable[] playerables;
