@@ -11,6 +11,8 @@ namespace TowerDefense
 
         Animator animator;
         DropTower dropTower;
+        AudioSource audioSource;
+        public AudioClip[] audioClip;
 
         public float rayDistance;
         public string charName;
@@ -27,6 +29,7 @@ namespace TowerDefense
         void Awake()
         {
             animator = GetComponent<Animator>();
+            audioSource = GetComponent<AudioSource>();
         }
         protected override void Start()
         {
@@ -66,6 +69,15 @@ namespace TowerDefense
                 Enemy enemyInfo = ray.collider.GetComponent<Enemy>();
                 isAttack = true;
                 animator.SetBool("isAttack", isAttack);
+                switch(charName)
+                {
+                    case "Knight":
+                        audioSource.PlayOneShot(audioClip[0]);
+                        break;
+                    case "Archer":
+                        audioSource.PlayOneShot(audioClip[1]);
+                        break;
+                }
                 //Debug.Log(">> Enemy에게 데미지 줌!");
                 enemyInfo.TakeDamage(damage);
             }
@@ -83,10 +95,19 @@ namespace TowerDefense
             {
                 isDie = true;
                 animator.SetBool("isDie", isDie);
-                StartCoroutine(DieAnimation());
-                if(charName == "Priest")
+                StartCoroutine(DieAnimation()); 
+                switch (charName)
                 {
-                    GameManager.priestNum--;
+                    case "Knight":
+                        audioSource.PlayOneShot(audioClip[2]);
+                        break;
+                    case "Archer":
+                        audioSource.PlayOneShot(audioClip[3]);
+                        break;
+                        case "Priest":
+                        audioSource.PlayOneShot(audioClip[4]);
+                        GameManager.priestNum--;
+                        break;
                 }
             }
         }

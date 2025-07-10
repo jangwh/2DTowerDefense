@@ -10,6 +10,8 @@ namespace TowerDefense
     public class Enemy : Character
     {
         Animator animator;
+        AudioSource audioSource;
+        public AudioClip[] audioClip;
 
         private float moveSpeed;
         public float rayDistance;
@@ -20,6 +22,7 @@ namespace TowerDefense
         void Awake()
         {
             animator = GetComponent<Animator>();
+            audioSource = GetComponent<AudioSource>();
         }
         protected override void Start()
         {
@@ -80,6 +83,18 @@ namespace TowerDefense
 
                     isAttack = true;
                     animator.SetBool("Attack", isAttack);
+                    switch (charName)
+                    {
+                        case "Zombie":
+                            audioSource.PlayOneShot(audioClip[0]);
+                            break;
+                        case "Ogre":
+                            audioSource.PlayOneShot(audioClip[1]);
+                            break;
+                        case "Dreadnought":
+                            audioSource.PlayOneShot(audioClip[2]);
+                            break;
+                    }
                 }
             }
         }
@@ -92,12 +107,15 @@ namespace TowerDefense
                 switch (charName)
                 {
                     case "Zombie":
+                        audioSource.PlayOneShot(audioClip[3]);
                         ScoreSave.currentScore += 10;
                         break;
                     case "Ogre":
+                        audioSource.PlayOneShot(audioClip[4]);
                         ScoreSave.currentScore += 30;
                         break;
                     case "Dreadnought":
+                        audioSource.PlayOneShot(audioClip[5]);
                         ScoreSave.currentScore += 50;
                         break;
                 }

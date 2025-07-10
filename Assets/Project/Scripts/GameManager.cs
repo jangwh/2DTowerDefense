@@ -10,7 +10,6 @@ namespace TowerDefense
     public class GameManager : MonoBehaviour
     {
         //TODO : 사운드 추가
-        //TODO : Enemy 사망 애니메이션 재생 수정
         public static GameManager Instance { get; private set; }
 
         public Playerable[] playerables;

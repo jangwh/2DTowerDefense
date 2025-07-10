@@ -11,16 +11,23 @@ namespace TowerDefense
         public GameObject GameOver;
         public Text scoreWinText;
         public Text scoreDefeatText;
-
+        public AudioClip[] audioClips;
+        AudioSource audioSource;
+        void Awake()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
         void Start()
         {
             if (GameManager.Instance.isWin)
             {
+                audioSource.PlayOneShot(audioClips[0]);
                 GameOver.SetActive(false);
                 GameWin.SetActive(true);
             }
             else if (GameManager.Instance.isDefeat)
             {
+                audioSource.PlayOneShot(audioClips[1]);
                 GameWin.SetActive(false);
                 GameOver.SetActive(true);
             }
