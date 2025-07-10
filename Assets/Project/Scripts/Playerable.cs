@@ -10,14 +10,13 @@ namespace TowerDefense
     {
 
         Animator animator;
-        DropTower dropTower;
         AudioSource audioSource;
+        public DropTower dropTower;
         public AudioClip[] audioClip;
 
         public float rayDistance;
         public string charName;
 
-        public float prayTime;
         private bool isAttack = false;
         private bool isDie = false;
         private bool isSpell = false;

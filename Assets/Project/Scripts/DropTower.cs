@@ -39,12 +39,12 @@ namespace TowerDefense {
                     if (prefab == null)
                     {
                         // 타일 위에 있는 기존 유닛 제거
-                        foreach (Transform child in transform)
+                        foreach (Transform child in tileGroup.transform.GetComponent<TileGenerator>().towerParent)
                         {
                             if (child.GetComponent<Playerable>() != null)
                             {
-                                string name = child.GetComponent<Playerable>().charName;
-                                LeanPool.Despawn(child.gameObject); // 기존 유닛 제거
+                                Playerable player = child.GetComponent<Playerable>();
+                                string name = player.charName;
 
                                 // 코인 환급
                                 switch (name)
@@ -60,7 +60,8 @@ namespace TowerDefense {
                                         GameManager.priestNum--;
                                         break;
                                 }
-                                receivingImage.overrideSprite = null;
+                                player.dropTower.receivingImage.overrideSprite = null;
+                                LeanPool.Despawn(child.gameObject); // 기존 유닛 제거
                                 break;
                             }
                         }
