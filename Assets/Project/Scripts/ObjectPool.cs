@@ -28,6 +28,8 @@ namespace TowerDefense
             PrewarmPool(playerablePrefabs[0], 50);
             PrewarmPool(playerablePrefabs[1], 50);
             PrewarmPool(playerablePrefabs[2], 50);
+            PrewarmPool(playerablePrefabs[3], 50);
+            PrewarmPool(playerablePrefabs[4], 50);
             PrewarmPool(enemyPrefabs[0], 50);
             PrewarmPool(enemyPrefabs[1], 50);
             PrewarmPool(enemyPrefabs[2], 50);

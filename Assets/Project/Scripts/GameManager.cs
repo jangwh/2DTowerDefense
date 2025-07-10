@@ -9,7 +9,9 @@ namespace TowerDefense
 {
     public class GameManager : MonoBehaviour
     {
-        //TODO : 사운드 추가
+        //TODO : 상점에서 다른 타워 구매, 사용할 타워 배치
+        //scriptableObject로 변경, Dictionary<int id, prefab prefab>? 이용해서 사용할 타워 변경?
+        //타워 배치는 어디서?
         public static GameManager Instance { get; private set; }
 
         public Playerable[] playerables;
@@ -17,6 +19,8 @@ namespace TowerDefense
         public TileGenerator tile;
         public DropTower[] TowerPos;
         public Button nextRoundBtn;
+        public Image warning;
+
         public int roundCount = 0;
         public int[] enemyCount;
 
@@ -24,9 +28,7 @@ namespace TowerDefense
         public int currentLifeCount;
         public int coin = 0;
 
-        public int knightCoin = 10;
-        public int archerCoin = 15;
-        public int priestCoin = 5;
+        public int[] towerCoin;
 
         public int enemySpawnCount;
         public bool isWin = false;
@@ -186,6 +188,18 @@ namespace TowerDefense
             ScoreSave.currentGold += 100;
             coin = 0;
             nextRoundBtn.gameObject.SetActive(false);
+
+            if(roundCount == 3)
+            {
+                StartCoroutine("Warning");
+            }
+        }
+        IEnumerator Warning()
+        {
+            warning.gameObject.SetActive(true);
+            warning.GetComponent<Animator>();
+            yield return new WaitForSeconds(2f);
+            warning.gameObject.SetActive(false);
         }
     }
 }

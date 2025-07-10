@@ -16,6 +16,8 @@ namespace TowerDefense
         public Text Gold;
         public Text ReturnGameMenu;
         public Text BestScoreText;
+        public Image BuyNoticeImage;
+        public Text BuyNoticeText;
 
         public int knightPrice;
         public int archerPrice;
@@ -39,41 +41,44 @@ namespace TowerDefense
         }
         public void OnKnightUpgrade()
         {
+            StartCoroutine(Notice());
             if (gold >= knightPrice)
             {
-                print("기사 강화 완료");
+                BuyNoticeText.text = $"기사 공격력 상승";
                 GameManager.Instance.playerables[0].damage += 5;
                 gold -= knightPrice;
             }
             else
             {
-                print("기사 강화 돈부족");
+                BuyNoticeText.text = $"골드가 부족합니다";
             }
         }
         public void OnArcherUpgrade()
         {
+            StartCoroutine(Notice());
             if (gold >= archerPrice)
             {
-                print("궁수 강화 완료");
+                BuyNoticeText.text = $"궁수 공격력 상승";
                 GameManager.Instance.playerables[1].damage += 5;
                 gold -= archerPrice;
             }
             else
             {
-                print("궁수 강화 돈부족");
+                BuyNoticeText.text = $"골드가 부족합니다";
             }
         }
         public void OnPriestUpgrade()
         {
+            StartCoroutine(Notice());
             if (gold >= priestPrice)
             {
-                print("사제 강화 완료");
+                BuyNoticeText.text = $"사제 체력 상승";
                 GameManager.Instance.playerables[2].maxHp += 5;
                 gold -= priestPrice;
             }
             else
             {
-                print("사제 강화 돈부족");
+                BuyNoticeText.text = $"골드가 부족합니다";
             }
         }
         public void OnShopMenu()
@@ -85,6 +90,12 @@ namespace TowerDefense
         {
             ShopMenu.SetActive(false);
             GameMenu.SetActive(true);
+        }
+        IEnumerator Notice()
+        {
+            BuyNoticeImage.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1.5f);
+            BuyNoticeImage.gameObject.SetActive(false);
         }
     }
 }

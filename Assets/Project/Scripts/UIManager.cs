@@ -12,16 +12,15 @@ namespace TowerDefense
         public Text LifeCount;
         public Text Coin;
 
-        public Text KnightText;
-        public Text ArcherText;
-        public Text PriestText;
+        public Text[] TowerText;
+
         public Text CellText;
         public Text ScoreText;
         void Awake()
         {
-            KnightText.text = $"Knight : {GameManager.Instance.knightCoin}";
-            ArcherText.text = $"Archer : {GameManager.Instance.archerCoin}";
-            PriestText.text = $"Priest : {GameManager.Instance.priestCoin}";
+            TowerText[0].text = $"Knight : {GameManager.Instance.towerCoin[0]}";
+            TowerText[1].text = $"Archer : {GameManager.Instance.towerCoin[1]}";
+            TowerText[2].text = $"Priest : {GameManager.Instance.towerCoin[2]}";
             CellText.text = $"판매";
         }
         void Update()

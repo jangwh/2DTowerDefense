@@ -15,6 +15,7 @@ namespace TowerDefense {
         private Color normalColor;
         public Color highlightColor = Color.yellow;
         public List<SpriteToPrefab> spritePrefabMappings;
+
         public void OnEnable()
         {
             if (containerImage != null)
@@ -39,24 +40,24 @@ namespace TowerDefense {
                     if (prefab == null)
                     {
                         // 타일 위에 있는 기존 유닛 제거
-                        foreach (Transform child in tileGroup.transform.GetComponent<TileGenerator>().towerParent)
+                        foreach (Transform child in tileGroup.GetComponent<TileGenerator>().towerParent)
                         {
-                            if (child.GetComponent<Playerable>() != null)
+                            Playerable player = child.GetComponent<Playerable>();
+                            if (player != null && player.dropTower == this)
                             {
-                                Playerable player = child.GetComponent<Playerable>();
                                 string name = player.charName;
 
                                 // 코인 환급
                                 switch (name)
                                 {
                                     case "Knight":
-                                        GameManager.Instance.coin += GameManager.Instance.knightCoin / 2;
+                                        GameManager.Instance.coin += GameManager.Instance.towerCoin[0] / 2;
                                         break;
                                     case "Archer":
-                                        GameManager.Instance.coin += GameManager.Instance.archerCoin / 2;
+                                        GameManager.Instance.coin += GameManager.Instance.towerCoin[1] / 2;
                                         break;
                                     case "Priest":
-                                        GameManager.Instance.coin += GameManager.Instance.priestCoin / 2;
+                                        GameManager.Instance.coin += GameManager.Instance.towerCoin[2] / 2;
                                         GameManager.priestNum--;
                                         break;
                                 }
@@ -83,30 +84,30 @@ namespace TowerDefense {
                     switch (prefab.GetComponent<Playerable>().charName)
                     {
                         case "Knight":
-                            if (GameManager.Instance.coin >= GameManager.Instance.knightCoin)
+                            if (GameManager.Instance.coin >= GameManager.Instance.towerCoin[0])
                             {
                                 receivingImage.overrideSprite = dropSprite;
-                                GameManager.Instance.coin -= GameManager.Instance.knightCoin;
+                                GameManager.Instance.coin -= GameManager.Instance.towerCoin[0];
                                 GameObject playerObj = LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
                                 Playerable player = playerObj.GetComponent<Playerable>();
                                 player.Init(this);
                             }
                             break;
                         case "Archer":
-                            if (GameManager.Instance.coin >= GameManager.Instance.archerCoin)
+                            if (GameManager.Instance.coin >= GameManager.Instance.towerCoin[1])
                             {
                                 receivingImage.overrideSprite = dropSprite;
-                                GameManager.Instance.coin -= GameManager.Instance.archerCoin;
+                                GameManager.Instance.coin -= GameManager.Instance.towerCoin[1];
                                 GameObject playerObj = LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
                                 Playerable player = playerObj.GetComponent<Playerable>();
                                 player.Init(this);
                             }
                             break;
                         case "Priest":
-                            if (GameManager.Instance.coin >= GameManager.Instance.priestCoin)
+                            if (GameManager.Instance.coin >= GameManager.Instance.towerCoin[2])
                             {
                                 receivingImage.overrideSprite = dropSprite;
-                                GameManager.Instance.coin -= GameManager.Instance.priestCoin;
+                                GameManager.Instance.coin -= GameManager.Instance.towerCoin[2];
                                 GameObject playerObj = LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
                                 Playerable player = playerObj.GetComponent<Playerable>();
                                 player.Init(this);

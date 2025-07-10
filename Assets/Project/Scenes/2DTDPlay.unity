@@ -3180,6 +3180,8 @@ MonoBehaviour:
   - {fileID: 5492949769662081397, guid: 83685e8abf8e1e740a867f28c00bfc3c, type: 3}
   - {fileID: 9029390794795843850, guid: 5d788ea68cca05e45baf797ccccef6dc, type: 3}
   - {fileID: 3966130164802700637, guid: de1445eea797d0e4e9293fd482f89b3c, type: 3}
+  - {fileID: 6555071956617413237, guid: 6b935a4569e90c44ba86f4aa7047c237, type: 3}
+  - {fileID: 4617053835588520110, guid: 347926f5dda6e8541a023821530b87a9, type: 3}
   enemies:
   - {fileID: 5618668257294069292, guid: 53171db4588f8d14384f300794de4da4, type: 3}
   - {fileID: 8037045686348457057, guid: f66a4ad77973e1a41b9862637f866a13, type: 3}
@@ -3227,14 +3229,14 @@ MonoBehaviour:
   - {fileID: 825318250}
   - {fileID: 1000947727}
   nextRoundBtn: {fileID: 1095360248}
+  warning: {fileID: 1813744809}
+  TowerSelect: {fileID: 1932394226}
   roundCount: 0
   enemyCount: 05000000080000000a00000003000000
   MaxLifeCount: 20
   currentLifeCount: 20
   coin: 0
-  knightCoin: 10
-  archerCoin: 15
-  priestCoin: 5
+  towerCoin: 0a0000000f00000005000000
   enemySpawnCount: 0
   isWin: 0
   isDefeat: 0
@@ -3581,9 +3583,10 @@ MonoBehaviour:
   Round: {fileID: 1498265840}
   LifeCount: {fileID: 1850639042}
   Coin: {fileID: 1619161383}
-  KnightText: {fileID: 313595714}
-  ArcherText: {fileID: 1296870775}
-  PriestText: {fileID: 303019089}
+  TowerText:
+  - {fileID: 313595714}
+  - {fileID: 1296870775}
+  - {fileID: 303019089}
   CellText: {fileID: 1115140147}
   ScoreText: {fileID: 590636922}
 --- !u!1 &1091185374
@@ -4344,6 +4347,8 @@ MonoBehaviour:
   - {fileID: 5492949769662081397, guid: 83685e8abf8e1e740a867f28c00bfc3c, type: 3}
   - {fileID: 9029390794795843850, guid: 5d788ea68cca05e45baf797ccccef6dc, type: 3}
   - {fileID: 3966130164802700637, guid: de1445eea797d0e4e9293fd482f89b3c, type: 3}
+  - {fileID: 6555071956617413237, guid: 6b935a4569e90c44ba86f4aa7047c237, type: 3}
+  - {fileID: 4617053835588520110, guid: 347926f5dda6e8541a023821530b87a9, type: 3}
   enemyPrefabs:
   - {fileID: 5618668257294069292, guid: 53171db4588f8d14384f300794de4da4, type: 3}
   - {fileID: 8037045686348457057, guid: f66a4ad77973e1a41b9862637f866a13, type: 3}
@@ -6043,6 +6048,7 @@ RectTransform:
   - {fileID: 1619161381}
   - {fileID: 590636920}
   - {fileID: 1095360247}
+  - {fileID: 1813744808}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6152,6 +6158,103 @@ MonoBehaviour:
     prefab: {fileID: 1000013034572668, guid: de1445eea797d0e4e9293fd482f89b3c, type: 3}
   - sprite: {fileID: 21300000, guid: 54c17589ca16bba47bdc8eec234c5a7a, type: 3}
     prefab: {fileID: 0}
+--- !u!1 &1813744807
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1813744808}
+  - component: {fileID: 1813744810}
+  - component: {fileID: 1813744809}
+  - component: {fileID: 1813744811}
+  m_Layer: 5
+  m_Name: BossWarning
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1813744808
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813744807}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1680321384}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1813744809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813744807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: e12b3c0ee2a6d5140978814f0ead3a1f, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1813744810
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813744807}
+  m_CullTransparentMesh: 1
+--- !u!95 &1813744811
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813744807}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 85d0372d1b8d1634882b51b0484ee2f7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1850639039
 GameObject:
   m_ObjectHideFlags: 0
