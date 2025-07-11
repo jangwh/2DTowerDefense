@@ -1,0 +1,47 @@
+﻿[
+    {
+        "id": "t001",
+        "name": "Knight",
+        "cost": 10,
+        "MaxHp":100,
+        "damage": 10,
+        "AttackInterval":3,
+        "prefabPath": "Towers/KnightTower"
+    },
+    {
+        "id": "t002",
+        "name": "Archer",
+        "cost": 15,
+        "MaxHp":70,
+        "damage": 5,
+        "AttackInterval":1.5,
+        "prefabPath": "Towers/Archer Tower"
+    },
+    {
+        "id": "t003",
+        "name": "Priest",
+        "cost": 5,
+        "MaxHp":30,
+        "damage": 0,
+        "AttackInterval":0,
+        "prefabPath": "Towers/Priest Tower"
+    },
+    {
+        "id": "t004",
+        "name": "Soldier",
+        "cost": 10,
+        "MaxHp":80,
+        "damage": 20,
+        "AttackInterval":4,
+        "prefabPath": "Towers/Soldier Tower"
+    },
+    {
+        "id": "t005",
+        "name": "Thief",
+        "cost": 10,
+        "MaxHp":60,
+        "damage": 15,
+        "AttackInterval":1,
+        "prefabPath": "Towers/Thief Tower"
+    }
+]

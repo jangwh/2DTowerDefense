@@ -1584,6 +1584,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &482960391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 482960393}
+  - component: {fileID: 482960392}
+  m_Layer: 0
+  m_Name: TowerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &482960392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482960391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f3cc3995c353d41bb6d064ba6c587f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towers: []
+--- !u!4 &482960393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482960391}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 537.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3176,6 +3221,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946f38b87709bff498ce7a05a28edaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerDatabase: {fileID: 482960392}
+  towerSpawnPositions:
+  - {fileID: 1160263230}
+  - {fileID: 126467230}
+  - {fileID: 1299013520}
   playerables:
   - {fileID: 5492949769662081397, guid: 83685e8abf8e1e740a867f28c00bfc3c, type: 3}
   - {fileID: 9029390794795843850, guid: 5d788ea68cca05e45baf797ccccef6dc, type: 3}
@@ -3230,7 +3280,6 @@ MonoBehaviour:
   - {fileID: 1000947727}
   nextRoundBtn: {fileID: 1095360248}
   warning: {fileID: 1813744809}
-  TowerSelect: {fileID: 1932394226}
   roundCount: 0
   enemyCount: 05000000080000000a00000003000000
   MaxLifeCount: 20
@@ -6822,3 +6871,4 @@ SceneRoots:
   - {fileID: 1680321384}
   - {fileID: 384286447}
   - {fileID: 1074941192}
+  - {fileID: 482960393}

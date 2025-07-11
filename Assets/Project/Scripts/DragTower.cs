@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,20 +14,16 @@ namespace TowerDefense
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            var canvas = FindInParents<Canvas>(gameObject);
+                var canvas = FindInParents<Canvas>(gameObject);
             if (canvas == null)
                 return;
 
-            // We have clicked something that can be dragged.
-            // What we want to do is create an icon for this.
             m_DraggingIcons[eventData.pointerId] = new GameObject("icon");
 
             m_DraggingIcons[eventData.pointerId].transform.SetParent(canvas.transform, false);
             m_DraggingIcons[eventData.pointerId].transform.SetAsLastSibling();
 
             var image = m_DraggingIcons[eventData.pointerId].AddComponent<Image>();
-            // The icon will be under the cursor.
-            // We want it to be ignored by the event system.
             var group = m_DraggingIcons[eventData.pointerId].AddComponent<CanvasGroup>();
             group.blocksRaycasts = false;
 

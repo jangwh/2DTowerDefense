@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TowerDefense;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 namespace TowerDefense
@@ -24,6 +26,9 @@ namespace TowerDefense
         public int priestPrice;
         int gold;
 
+        //TODO : 상점에서 다른 타워 구매, 사용할 타워 배치
+        //타워 강화시 레벨업해서 능력치 변경
+        //ScriptableObject보다 Json 사용해볼것
         void Start()
         {
             int bestScore = ScoreSave.GetBestScore();

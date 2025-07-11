@@ -9,10 +9,11 @@ namespace TowerDefense
 {
     public class GameManager : MonoBehaviour
     {
-        //TODO : 상점에서 다른 타워 구매, 사용할 타워 배치
-        //scriptableObject로 변경, Dictionary<int id, prefab prefab>? 이용해서 사용할 타워 변경?
-        //타워 배치는 어디서?
         public static GameManager Instance { get; private set; }
+
+        public TowerDatabase towerDatabase;
+        public Transform[] towerSpawnPositions; // 인스펙터에 3칸 지정
+        private List<TowerData> selectedTowers = new List<TowerData>();
 
         public Playerable[] playerables;
         public Enemy[] enemies;
@@ -56,6 +57,38 @@ namespace TowerDefense
             currentLifeCount = MaxLifeCount;
             enemySpawnRoutine  = StartCoroutine(EnemySpawnCoroutine());
             coinplus = StartCoroutine(CoinPlus());
+
+            LoadSelectedTowers();
+            SpawnSelectedTowers();
+
+        }
+        void LoadSelectedTowers()
+        {
+            string json = PlayerPrefs.GetString("SelectedTowers");
+            TowerSelector.SelectedTowerWrapper wrapper = JsonUtility.FromJson<TowerSelector.SelectedTowerWrapper>(json);
+
+            foreach (string id in wrapper.selected)
+            {
+                TowerData data = towerDatabase.FindById(id);
+                if (data != null)
+                    selectedTowers.Add(data);
+            }
+        }
+
+        void SpawnSelectedTowers()
+        {
+            for (int i = 0; i < selectedTowers.Count && i < towerSpawnPositions.Length; i++)
+            {
+                GameObject towerPrefab = Resources.Load<GameObject>(selectedTowers[i].prefabPath);
+                if (towerPrefab != null)
+                {
+                    Instantiate(towerPrefab, towerSpawnPositions[i].position, Quaternion.identity);
+                }
+                else
+                {
+                    Debug.LogWarning("타워 프리팹 못 찾음: " + selectedTowers[i].prefabPath);
+                }
+            }
         }
         void Update()
         {
@@ -191,7 +224,7 @@ namespace TowerDefense
 
             if(roundCount == 3)
             {
-                StartCoroutine("Warning");
+                StartCoroutine(Warning());
             }
         }
         IEnumerator Warning()
