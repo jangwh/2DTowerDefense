@@ -12,13 +12,13 @@ namespace TowerDefense
         public static GameManager Instance { get; private set; }
 
         public TowerDatabase towerDatabase;
-        public Transform[] towerSpawnPositions; // 인스펙터에 3칸 지정
+        public Transform[] towerSpawnPositions;
         private List<TowerData> selectedTowers = new List<TowerData>();
-        public GameObject dragSlotPrefab; // 드래그 프리팹
-        public Transform dragSlotParent;  // UI 부모 오브젝트
+        public GameObject dragSlotPrefab;
+        public Transform dragSlotParent;
 
         public List<SpriteToPrefab> spritePrefabMappings;
-        public List<GameObject> allSlots; // Inspector에 Slot들 순서대로 넣기
+        public List<GameObject> allSlots;
 
         public Playerable[] playerables;
         public Enemy[] enemies;
@@ -44,12 +44,12 @@ namespace TowerDefense
 
         Coroutine enemySpawnRoutine;
         Coroutine coinplus;
+
         void Awake()
         {
             if (Instance == null)
             {
                 Instance = this;
-                //DontDestroyOnLoad(gameObject);
             }
             else if (Instance != this)
             {
@@ -57,6 +57,7 @@ namespace TowerDefense
                 return;
             }
         }
+
         void Start()
         {
             currentLifeCount = MaxLifeCount;
@@ -65,57 +66,8 @@ namespace TowerDefense
 
             LoadSelectedTowers();
             SpawnSelectedTowers();
-
-            string json = PlayerPrefs.GetString("SelectedTowers", "");
-
-            if (string.IsNullOrEmpty(json))
-            {
-                Debug.LogWarning("⛔ 선택된 타워 데이터 없음");
-                return;
-            }
-
-            SelectedTowerWrapper wrapper = JsonUtility.FromJson<SelectedTowerWrapper>(json);
-            if (wrapper == null || wrapper.selected == null)
-            {
-                Debug.LogWarning("⛔ 타워 데이터 파싱 실패");
-                return;
-            }
-
-
-            foreach (string id in wrapper.selected)
-            {
-                TowerData data = towerDatabase.FindById(id);
-                if (data == null) continue;
-
-                // 드래그 슬롯 생성
-                GameObject slot = Instantiate(dragSlotPrefab, dragSlotParent);
-                Image image = slot.GetComponent<Image>();
-                DragMe dragMe = slot.GetComponent<DragMe>();
-
-                Sprite sprite = Resources.Load<Sprite>(data.spritePath);
-                if (image != null) image.sprite = sprite;
-
-                // SpriteToPrefab 매핑에 추가
-                SpriteToPrefab mapping = new SpriteToPrefab
-                {
-                    sprite = sprite,
-                    prefab = Resources.Load<GameObject>(data.prefabPath)
-                };
-                spritePrefabMappings.Add(mapping);
-            }
-            foreach (GameObject slot in allSlots)
-            {
-                string slotId = slot.name.Replace("Slot", "").ToLower(); // ex: "KnightSlot" → "knight"
-                bool isSelected = wrapper.selected.Contains(slotId);
-                slot.SetActive(isSelected);
-            }
-
-            // DropTower 쪽에 spritePrefabMappings 전달
-            DropTower[] dropTowers = FindObjectsOfType<DropTower>();
-            foreach (DropTower drop in dropTowers)
-            {
-                drop.spritePrefabMappings = spritePrefabMappings;
-            }
+            SetupDragSlots();
+            SetupDropTowers();
         }
 
         void LoadSelectedTowers()
@@ -144,7 +96,6 @@ namespace TowerDefense
                 }
                 else
                 {
-                    Debug.Log($"✅ TowerDatabase에서 타워 로드: {data.id} → {data.prefabPath}");
                     selectedTowers.Add(data);
                 }
             }
@@ -152,8 +103,6 @@ namespace TowerDefense
 
         void SpawnSelectedTowers()
         {
-            Debug.Log($"[SpawnSelectedTowers] 선택된 타워 수: {selectedTowers.Count}");
-
             for (int i = 0; i < selectedTowers.Count && i < towerSpawnPositions.Length; i++)
             {
                 TowerData data = selectedTowers[i];
@@ -165,12 +114,56 @@ namespace TowerDefense
                     continue;
                 }
 
-                Debug.Log($"✅ 프리팹 로드 성공: {data.prefabPath}");
-
                 Vector3 spawnPos = towerSpawnPositions[i].position;
                 GameObject obj = Instantiate(towerPrefab, spawnPos, Quaternion.identity);
             }
         }
+
+        void SetupDragSlots()
+        {
+            string json = PlayerPrefs.GetString("SelectedTowers", "");
+            SelectedTowerWrapper wrapper = JsonUtility.FromJson<SelectedTowerWrapper>(json);
+
+            if (wrapper == null || wrapper.selected == null) return;
+
+            foreach (string id in wrapper.selected)
+            {
+                TowerData data = towerDatabase.FindById(id);
+                if (data == null) continue;
+
+                GameObject slot = Instantiate(dragSlotPrefab, dragSlotParent);
+                Image image = slot.GetComponent<Image>();
+                if (image != null)
+                {
+                    Sprite sprite = Resources.Load<Sprite>(data.spritePath);
+                    image.sprite = sprite;
+
+                    SpriteToPrefab mapping = new SpriteToPrefab
+                    {
+                        sprite = sprite,
+                        prefab = Resources.Load<GameObject>(data.prefabPath)
+                    };
+                    spritePrefabMappings.Add(mapping);
+                }
+            }
+
+            foreach (GameObject slot in allSlots)
+            {
+                string slotId = slot.name.Replace("Slot", "").ToLower();
+                bool isSelected = wrapper.selected.Contains(slotId);
+                slot.SetActive(isSelected);
+            }
+        }
+
+        void SetupDropTowers()
+        {
+            DropTower[] dropTowers = FindObjectsOfType<DropTower>();
+            foreach (DropTower drop in dropTowers)
+            {
+                drop.spritePrefabMappings = spritePrefabMappings;
+            }
+        }
+
         void Update()
         {
             bool isRoundValid = roundCount >= 0 && roundCount < enemyCount.Length;
@@ -204,76 +197,62 @@ namespace TowerDefense
                 SceneManager.LoadScene(2);
             }
         }
+
         IEnumerator CoinPlus()
         {
             float second = 1f;
             while (true)
             {
                 float coinSpeed = second / Mathf.Max(priestNum, 1);
-                WaitForSeconds wait = new WaitForSeconds(coinSpeed);
-                yield return wait;
+                yield return new WaitForSeconds(coinSpeed);
                 coin++;
             }
         }
+
         IEnumerator EnemySpawnCoroutine()
         {
-            WaitForSeconds wait = new WaitForSeconds(5f);
-            yield return wait;
+            yield return new WaitForSeconds(5f);
 
             while (true)
             {
-                if (roundCount < 0 || roundCount >= enemyCount.Length)
-                {
-                    yield break;
-                }
+                if (roundCount < 0 || roundCount >= enemyCount.Length) yield break;
+
                 EnemySpawn();
                 enemyCount[roundCount]--;
                 enemySpawnCount++;
-                yield return wait;
+                yield return new WaitForSeconds(5f);
             }
         }
+
         void EnemySpawn()
         {
             if (tile == null) return;
             int ranEnemy = Random.Range(0, enemies.Length);
             int ranTileY = Random.Range(-tile.genDisty, tile.genDisty + 1);
-            Enemy enemy;
-            if (roundCount == 0)
+
+            Vector2 spawnPos = new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f);
+            Enemy enemy = null;
+
+            if (roundCount == 0 || (roundCount == 1 && ranEnemy == 0))
             {
-                enemy = ObjectPool.Instance.SpawnZombie(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
-                enemy.Init();
+                enemy = ObjectPool.Instance.SpawnZombie(spawnPos);
             }
-            else if (roundCount == 1)
+            else if ((roundCount == 1 && ranEnemy == 1) || roundCount == 2)
             {
-                if (ranEnemy == 0)
-                {
-                    enemy = ObjectPool.Instance.SpawnZombie(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
-                    enemy.Init();
-                }
-                else
-                {
-                    enemy = ObjectPool.Instance.SpawnOrc(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
-                    enemy.Init();
-                }
-            }
-            else if (roundCount == 2)
-            {
-                enemy = ObjectPool.Instance.SpawnOrc(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
-                enemy.Init();
+                enemy = ObjectPool.Instance.SpawnOrc(spawnPos);
             }
             else if (roundCount == 3)
             {
-                enemy = ObjectPool.Instance.SpawnDreadnought(new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f));
-                enemy.Init();
+                enemy = ObjectPool.Instance.SpawnDreadnought(spawnPos);
             }
+
+            if (enemy != null) enemy.Init();
         }
+
         public void OnNextRound()
         {
-            if (roundCount + 1 > enemyCount.Length)
-            {
-                return;
-            }
-            // 안전하게 Despawn 하도록 복사본 사용
+            if (roundCount + 1 > enemyCount.Length) return;
+
             List<GameObject> toDespawn = new List<GameObject>();
 
             foreach (DropTower dropTower in TowerPos)
@@ -292,11 +271,9 @@ namespace TowerDefense
             {
                 string name = obj.GetComponent<Playerable>().charName;
                 LeanPool.Despawn(obj);
-                if (name == "Priest")
-                {
-                    priestNum--;
-                }
+                if (name == "Priest") priestNum--;
             }
+
             roundCount++;
             Time.timeScale = 1f;
             ScoreSave.currentGold += 100;
@@ -308,10 +285,10 @@ namespace TowerDefense
                 StartCoroutine(Warning());
             }
         }
+
         IEnumerator Warning()
         {
             warning.gameObject.SetActive(true);
-            warning.GetComponent<Animator>();
             yield return new WaitForSeconds(2f);
             warning.gameObject.SetActive(false);
         }
