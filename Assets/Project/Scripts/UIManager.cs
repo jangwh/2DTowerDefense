@@ -13,7 +13,7 @@ namespace TowerDefense
         public Text Coin;
 
         public Text[] TowerText;
-
+        
         public Text CellText;
         public Text ScoreText;
         void Awake()

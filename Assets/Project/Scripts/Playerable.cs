@@ -70,11 +70,17 @@ namespace TowerDefense
                 animator.SetBool("isAttack", isAttack);
                 switch(charName)
                 {
-                    case "Knight":
+                    case "knight":
                         audioSource.PlayOneShot(audioClip[0]);
                         break;
-                    case "Archer":
+                    case "archer":
                         audioSource.PlayOneShot(audioClip[1]);
+                        break;
+                    case "soldier":
+                        audioSource.PlayOneShot(audioClip[0]);
+                        break;
+                    case "thief":
+                        audioSource.PlayOneShot(audioClip[0]);
                         break;
                 }
                 //Debug.Log(">> Enemy에게 데미지 줌!");
@@ -97,15 +103,21 @@ namespace TowerDefense
                 StartCoroutine(DieAnimation()); 
                 switch (charName)
                 {
-                    case "Knight":
+                    case "knight":
                         audioSource.PlayOneShot(audioClip[2]);
                         break;
-                    case "Archer":
+                    case "archer":
                         audioSource.PlayOneShot(audioClip[3]);
                         break;
-                        case "Priest":
+                    case "Priest":
                         audioSource.PlayOneShot(audioClip[4]);
                         GameManager.priestNum--;
+                        break;
+                    case "":
+                        audioSource.PlayOneShot(audioClip[2]);
+                        break;
+                    case "thief":
+                        audioSource.PlayOneShot(audioClip[2]);
                         break;
                 }
             }

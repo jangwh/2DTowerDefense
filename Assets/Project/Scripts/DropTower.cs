@@ -23,13 +23,11 @@ namespace TowerDefense {
         }
         public void OnDrop(PointerEventData eventData)
         {
-            containerImage.color = normalColor;
-
-            if (receivingImage == null)
-                return;
-
             Sprite dropSprite = GetDropSprite(eventData);
             GameObject prefab = GetPrefabFromSprite(dropSprite);
+
+            Debug.Log($"▶ 드래그된 스프라이트 이름: {dropSprite?.name}");
+            Debug.Log($"▶ 매핑된 프리팹: {prefab?.name}");
 
             if (dropSprite != null)
             {
@@ -50,15 +48,21 @@ namespace TowerDefense {
                                 // 코인 환급
                                 switch (name)
                                 {
-                                    case "Knight":
+                                    case "knight":
                                         GameManager.Instance.coin += GameManager.Instance.towerCoin[0] / 2;
                                         break;
-                                    case "Archer":
+                                    case "archer":
                                         GameManager.Instance.coin += GameManager.Instance.towerCoin[1] / 2;
                                         break;
-                                    case "Priest":
+                                    case "priest":
                                         GameManager.Instance.coin += GameManager.Instance.towerCoin[2] / 2;
                                         GameManager.priestNum--;
+                                        break;
+                                    case "soldier":
+                                        GameManager.Instance.coin += GameManager.Instance.towerCoin[3] / 2;
+                                        break;
+                                    case "thief":
+                                        GameManager.Instance.coin += GameManager.Instance.towerCoin[4] / 2;
                                         break;
                                 }
                                 player.dropTower.receivingImage.overrideSprite = null;
@@ -83,7 +87,7 @@ namespace TowerDefense {
                     worldPos.z = 0;
                     switch (prefab.GetComponent<Playerable>().charName)
                     {
-                        case "Knight":
+                        case "knight":
                             if (GameManager.Instance.coin >= GameManager.Instance.towerCoin[0])
                             {
                                 receivingImage.overrideSprite = dropSprite;
@@ -93,7 +97,7 @@ namespace TowerDefense {
                                 player.Init(this);
                             }
                             break;
-                        case "Archer":
+                        case "archer":
                             if (GameManager.Instance.coin >= GameManager.Instance.towerCoin[1])
                             {
                                 receivingImage.overrideSprite = dropSprite;
@@ -103,7 +107,7 @@ namespace TowerDefense {
                                 player.Init(this);
                             }
                             break;
-                        case "Priest":
+                        case "priest":
                             if (GameManager.Instance.coin >= GameManager.Instance.towerCoin[2])
                             {
                                 receivingImage.overrideSprite = dropSprite;
@@ -112,6 +116,26 @@ namespace TowerDefense {
                                 Playerable player = playerObj.GetComponent<Playerable>();
                                 player.Init(this);
                                 GameManager.priestNum++;
+                            }
+                            break;
+                        case "soldier":
+                            if (GameManager.Instance.coin >= GameManager.Instance.towerCoin[3])
+                            {
+                                receivingImage.overrideSprite = dropSprite;
+                                GameManager.Instance.coin -= GameManager.Instance.towerCoin[3];
+                                GameObject playerObj = LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
+                                Playerable player = playerObj.GetComponent<Playerable>();
+                                player.Init(this);
+                            }
+                            break;
+                        case "thief":
+                            if (GameManager.Instance.coin >= GameManager.Instance.towerCoin[4])
+                            {
+                                receivingImage.overrideSprite = dropSprite;
+                                GameManager.Instance.coin -= GameManager.Instance.towerCoin[4];
+                                GameObject playerObj = LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
+                                Playerable player = playerObj.GetComponent<Playerable>();
+                                player.Init(this);
                             }
                             break;
                     }
@@ -151,11 +175,26 @@ namespace TowerDefense {
         }
         private GameObject GetPrefabFromSprite(Sprite sprite)
         {
+            if (sprite == null)
+            {
+                Debug.LogWarning("Sprite가 null입니다.");
+                return null;
+            }
+
             foreach (var mapping in spritePrefabMappings)
             {
-                if (mapping.sprite == sprite)
-                    return mapping.prefab;
+                if (mapping.sprite != null && mapping.prefab != null)
+                {
+                    // 🎯 이름으로 비교
+                    if (mapping.sprite.name == sprite.name)
+                    {
+                        Debug.Log($"✔ 매칭 성공: {sprite.name} → {mapping.prefab.name}");
+                        return mapping.prefab;
+                    }
+                }
             }
+
+            Debug.LogWarning($"⛔ Sprite({sprite.name})에 해당하는 프리팹을 못 찾음");
             return null;
         }
         private Vector3 GetWorldPositon(RectTransform rectTransform)

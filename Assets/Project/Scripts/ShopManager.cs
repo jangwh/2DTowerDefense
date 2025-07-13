@@ -26,11 +26,15 @@ namespace TowerDefense
         public int priestPrice;
         int gold;
 
+        public Button buySlotButton;
+        public Text slotText;
         //TODO : 상점에서 다른 타워 구매, 사용할 타워 배치
         //타워 강화시 레벨업해서 능력치 변경
         //ScriptableObject보다 Json 사용해볼것
         void Start()
         {
+            UpdateUI();
+            buySlotButton.onClick.AddListener(BuySlotExpansion);
             int bestScore = ScoreSave.GetBestScore();
             BestScoreText.text = $"최고 점수 : {bestScore}점";
             gold = ScoreSave.GetGold();
@@ -43,6 +47,32 @@ namespace TowerDefense
         void Update()
         {
             Gold.text = $"소지금 : {gold}";
+        }
+        void BuySlotExpansion()
+        {
+            int current = TowerSlotSave.GetMaxSlot();
+            if (current < 5 && gold >= 100)
+            {
+                gold -= 100;
+                TowerSlotSave.SetMaxSlot(current + 1);
+                UpdateUI();
+            }
+            else
+            {
+                Debug.Log("슬롯 최대치 도달 또는 코인 부족");
+            }
+        }
+
+        void UpdateUI()
+        {
+            int current = TowerSlotSave.GetMaxSlot();
+            slotText.text = $"슬롯: {current}/5";
+
+            if (current >= 5)
+            {
+                buySlotButton.interactable = false;
+                slotText.text = "최대 슬롯입니다";
+            }
         }
         public void OnKnightUpgrade()
         {
