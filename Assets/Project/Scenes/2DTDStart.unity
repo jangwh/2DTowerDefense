@@ -1510,7 +1510,6 @@ MonoBehaviour:
   - priest
   - soldier
   - thief
-  maxSelectableTowers: 6
 --- !u!1 &722889936
 GameObject:
   m_ObjectHideFlags: 0

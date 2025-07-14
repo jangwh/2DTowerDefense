@@ -11,20 +11,55 @@ namespace TowerDefense
         private string towerId;
         private StartSceneManager selector;
 
-        public void Init(TowerData data, StartSceneManager selector)
+        private bool isSelected = false;
+        private StartSceneManager manager;
+        private TowerData towerData;
+
+        public void Init(TowerData data, StartSceneManager mgr)
         {
-            this.selector = selector;
-            this.towerId = data.id;
+            towerData = data;
+            manager = mgr;
+            towerImage.sprite = Resources.Load<Sprite>(data.spritePath);
+            isSelected = false;
+            UpdateVisual();
 
-            towerNameText.text = data.towerName;
 
-            Sprite loadedSprite = Resources.Load<Sprite>(data.spritePath);
-            towerImage.sprite = loadedSprite;
-
-            selectButton.onClick.AddListener(() =>
-            {
-                selector.ToggleTowerSelection(towerId);
-            });
+            selectButton.onClick.AddListener(ToggleSelect);
         }
+        public void SetSelected(bool value)
+        {
+            isSelected = value;
+
+            if (isSelected && !manager.selectedTowerIds.Contains(towerData.id))
+                manager.selectedTowerIds.Add(towerData.id);
+            else if (!isSelected && manager.selectedTowerIds.Contains(towerData.id))
+                manager.selectedTowerIds.Remove(towerData.id);
+            UpdateVisual();
+
+        }
+        void ToggleSelect()
+        {
+            int maxSlots = TowerSlotSave.GetMaxSlot();
+
+            if (!isSelected && manager.selectedTowerIds.Count >= maxSlots)
+            {
+                Debug.Log("슬롯 제한 초과");
+                return;
+            }
+
+            isSelected = !isSelected;
+
+            if (isSelected)
+                manager.selectedTowerIds.Add(towerData.id);
+            else
+                manager.selectedTowerIds.Remove(towerData.id);
+            UpdateVisual();
+
+        }
+        void UpdateVisual()
+        {
+            towerImage.color = isSelected ? Color.white : new Color(1f, 1f, 1f, 0.3f);
+        }
+
     }
 }

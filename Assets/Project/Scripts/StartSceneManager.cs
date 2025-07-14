@@ -18,11 +18,25 @@ namespace TowerDefense
         //public int maxSelectableTowers = 5;
         void Start()
         {
-            foreach (TowerData data in towerDatabase.towers)
+            selectedTowerIds.Clear(); // ✅ 선택 목록 초기화 (중복 저장 방지)
+
+            for (int i = 0; i < towerDatabase.towers.Count; i++)
             {
+                TowerData data = towerDatabase.towers[i];
                 GameObject slot = Instantiate(slotPrefab, gridParent);
                 TowerSlotUI slotUI = slot.GetComponent<TowerSlotUI>();
                 slotUI.Init(data, this);
+
+                // ✅ 처음 3개만 선택 상태로 강제 설정
+                if (i < 3)
+                {
+                    selectedTowerIds.Add(data.id);
+                    slotUI.SetSelected(true); // 직접 선택 적용
+                }
+                else
+                {
+                    slotUI.SetSelected(false); // 나머지는 선택 해제
+                }
             }
         }
         public void ToggleTowerSelection(string id)
@@ -52,7 +66,11 @@ namespace TowerDefense
                 Debug.LogWarning("선택된 타워가 없습니다.");
                 return;
             }
-
+            if (selectedTowerIds.Count > TowerSlotSave.GetMaxSlot())
+            {
+                Debug.LogWarning("슬롯 수보다 많은 타워가 선택됨 (버그 가능성)");
+                return;
+            }
             // JSON 저장
             SelectedTowerWrapper wrapper = new SelectedTowerWrapper
             {
