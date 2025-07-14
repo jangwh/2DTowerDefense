@@ -15,18 +15,14 @@ namespace TowerDefense
 
         public TowerDatabase towerDatabase;
 
-        public Text KnightPrice;
-        public Text ArcherPrice;
-        public Text PriestPrice;
+        public Text[] TowerPriceText;
         public Text Gold;
         public Text ReturnGameMenu;
         public Text BestScoreText;
         public Image BuyNoticeImage;
         public Text BuyNoticeText;
 
-        public int knightPrice;
-        public int archerPrice;
-        public int priestPrice;
+        public int[] towerPrice;
         int gold;
 
         public Button buySlotButton;
@@ -38,9 +34,11 @@ namespace TowerDefense
             int bestScore = ScoreSave.GetBestScore();
             BestScoreText.text = $"최고 점수 : {bestScore}점";
             gold = ScoreSave.GetGold();
-            KnightPrice.text = $"기사 공격력 강화 : {knightPrice}";
-            ArcherPrice.text = $"궁수 공격력 강화 : {archerPrice}";
-            PriestPrice.text = $"사제 체력 강화 : {priestPrice}";
+            TowerPriceText[0].text = $"기사 공격업 : {towerPrice[0]}";
+            TowerPriceText[1].text = $"궁수 공격업 : {towerPrice[1]}";
+            TowerPriceText[2].text = $"사제 체력업 : {towerPrice[2]}";
+            TowerPriceText[3].text = $"솔져 공격업 : {towerPrice[3]}";
+            TowerPriceText[4].text = $"도적 공격업 : {towerPrice[4]}";
             ReturnGameMenu.text = "게임 메뉴";
             ShopMenu.SetActive(false);
         }
@@ -87,7 +85,7 @@ namespace TowerDefense
         public void OnKnightUpgrade()
         {
             StartCoroutine(Notice());
-            if (gold >= knightPrice)
+            if (gold >= towerPrice[0])
             {
                 BuyNoticeText.text = $"기사 공격력 상승";
                 foreach ( TowerData towerData in towerDatabase.towers)
@@ -98,7 +96,7 @@ namespace TowerDefense
                     }
                 }
                 SaveTowerDatabase();
-                gold -= knightPrice;
+                gold -= towerPrice[0];
             }
             else
             {
@@ -108,7 +106,7 @@ namespace TowerDefense
         public void OnArcherUpgrade()
         {
             StartCoroutine(Notice());
-            if (gold >= archerPrice)
+            if (gold >= towerPrice[1])
             {
                 BuyNoticeText.text = $"궁수 공격력 상승";
                 foreach (TowerData towerData in towerDatabase.towers)
@@ -120,7 +118,7 @@ namespace TowerDefense
                     }
                 }
                 SaveTowerDatabase();
-                gold -= archerPrice;
+                gold -= towerPrice[1];
             }
             else
             {
@@ -130,7 +128,7 @@ namespace TowerDefense
         public void OnPriestUpgrade()
         {
             StartCoroutine(Notice());
-            if (gold >= priestPrice)
+            if (gold >= towerPrice[2])
             {
                 BuyNoticeText.text = $"사제 체력 상승";
                 foreach (TowerData towerData in towerDatabase.towers)
@@ -141,7 +139,49 @@ namespace TowerDefense
                     }
                 }
                 SaveTowerDatabase();
-                gold -= priestPrice;
+                gold -= towerPrice[2];
+            }
+            else
+            {
+                BuyNoticeText.text = $"골드가 부족합니다";
+            }
+        }
+        public void OnSoldiertUpgrade()
+        {
+            StartCoroutine(Notice());
+            if (gold >= towerPrice[3])
+            {
+                BuyNoticeText.text = $"솔져 공격력 상승";
+                foreach (TowerData towerData in towerDatabase.towers)
+                {
+                    if (towerData.towerName == "soldier")
+                    {
+                        towerData.damage += 5;
+                    }
+                }
+                SaveTowerDatabase();
+                gold -= towerPrice[3];
+            }
+            else
+            {
+                BuyNoticeText.text = $"골드가 부족합니다";
+            }
+        }
+        public void OnThiefUpgrade()
+        {
+            StartCoroutine(Notice());
+            if (gold >= towerPrice[4])
+            {
+                BuyNoticeText.text = $"도적 공격력 상승";
+                foreach (TowerData towerData in towerDatabase.towers)
+                {
+                    if (towerData.towerName == "thief")
+                    {
+                        towerData.damage += 5;
+                    }
+                }
+                SaveTowerDatabase();
+                gold -= towerPrice[4];
             }
             else
             {
