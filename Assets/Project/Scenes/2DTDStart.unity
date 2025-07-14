@@ -964,6 +964,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameMenu: {fileID: 17577937}
   ShopMenu: {fileID: 1488223084}
+  SelectTower: {fileID: 865400882}
+  TowerDatabase: {fileID: 770031697}
   KnightPrice: {fileID: 675926638}
   ArcherPrice: {fileID: 929016764}
   PriestPrice: {fileID: 1974719889}
@@ -1621,7 +1623,7 @@ GameObject:
   - component: {fileID: 865400883}
   - component: {fileID: 865400884}
   m_Layer: 5
-  m_Name: TowerMenu (1)
+  m_Name: SelectTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

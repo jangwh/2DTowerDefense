@@ -1912,7 +1912,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 180}
+  m_SizeDelta: {x: 160, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &558829410
 MonoBehaviour:
@@ -3045,7 +3045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 0, b: 0.79459, a: 0.5}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
 --- !u!114 &860273890
@@ -3081,7 +3081,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB3C4\uC801"
+  m_Text: "\uB3C4\uC801 : \uAC00\uACA9"
 --- !u!222 &860273891
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3298,7 +3298,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 180}
+  m_SizeDelta: {x: 160, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &947590992
 MonoBehaviour:
@@ -3517,17 +3517,7 @@ MonoBehaviour:
   - {fileID: 1000947724}
   dragSlotPrefab: {fileID: 4266407619533999191, guid: 11494ff16e74d03478695e04a457217c, type: 3}
   dragSlotParent: {fileID: 1932394227}
-  spritePrefabMappings:
-  - sprite: {fileID: 21300000, guid: d2aad92a2f28e0643b077fda9f757ffc, type: 2}
-    prefab: {fileID: 1000010755293042, guid: ac1d479a39f989e46af97a4861c20cc9, type: 3}
-  - sprite: {fileID: 21300000, guid: 1ca6c3fd8b9b5c544a925022aec79321, type: 2}
-    prefab: {fileID: 1000010854855540, guid: 818009b35e6e1bf4e855b1e0197ad558, type: 3}
-  - sprite: {fileID: 21300000, guid: 17b92dd3335a0cf449167995148d56bb, type: 2}
-    prefab: {fileID: 1000013034572668, guid: db5de294788bc8f4594fe594a657627a, type: 3}
-  - sprite: {fileID: 21300000, guid: df02122e0d45e544485c030fbd568c87, type: 2}
-    prefab: {fileID: 1000011742669328, guid: d9ebbab9f092e8742af955cbd7764d31, type: 3}
-  - sprite: {fileID: 21300000, guid: 6a2fa72656c2ea943ab418f079d92210, type: 2}
-    prefab: {fileID: 1000012663239756, guid: f9cdf04726cdb5c438d57b685f535703, type: 3}
+  spritePrefabMappings: []
   allSlots:
   - {fileID: 947590990}
   - {fileID: 1070857963}
@@ -3861,7 +3851,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 180}
+  m_SizeDelta: {x: 160, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1070857965
 MonoBehaviour:
@@ -4094,7 +4084,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 240225530}
-  - {fileID: 1813744808}
   m_Father: {fileID: 1680321384}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4895,7 +4884,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 180}
+  m_SizeDelta: {x: 160, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1248231999
 MonoBehaviour:
@@ -5505,7 +5494,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 180}
+  m_SizeDelta: {x: 160, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1466429323
 MonoBehaviour:
@@ -5677,7 +5666,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 180}
+  m_SizeDelta: {x: 160, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1498772803
 MonoBehaviour:
@@ -6638,6 +6627,7 @@ RectTransform:
   - {fileID: 1619161381}
   - {fileID: 590636920}
   - {fileID: 1095360247}
+  - {fileID: 1813744808}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6695,7 +6685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 0, b: 0.79459, a: 0.5}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
 --- !u!114 &1740352973
@@ -6720,7 +6710,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -6731,7 +6721,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uAD70\uC778"
+  m_Text: "\uAD70\uC778 : \uAC00\uACA9"
 --- !u!222 &1740352974
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6877,12 +6867,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1095360247}
+  m_Father: {fileID: 1680321384}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1420, y: 930}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1813744809
 MonoBehaviour:

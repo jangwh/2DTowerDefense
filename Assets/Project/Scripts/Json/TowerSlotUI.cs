@@ -24,7 +24,6 @@ namespace TowerDefense
             selectButton.onClick.AddListener(() =>
             {
                 selector.ToggleTowerSelection(towerId);
-                // 선택 상태에 따라 UI 효과 바꾸기 (색상 등)
             });
         }
     }

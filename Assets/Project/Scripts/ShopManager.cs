@@ -11,6 +11,9 @@ namespace TowerDefense
     {
         public GameObject GameMenu;
         public GameObject ShopMenu;
+        public GameObject SelectTower;
+
+        public TowerDatabase towerDatabase;
 
         public Text KnightPrice;
         public Text ArcherPrice;
@@ -28,9 +31,6 @@ namespace TowerDefense
 
         public Button buySlotButton;
         public Text slotText;
-        //TODO : 상점에서 다른 타워 구매, 사용할 타워 배치
-        //타워 강화시 레벨업해서 능력치 변경
-        //ScriptableObject보다 Json 사용해볼것
         void Start()
         {
             UpdateUI();
@@ -80,7 +80,15 @@ namespace TowerDefense
             if (gold >= knightPrice)
             {
                 BuyNoticeText.text = $"기사 공격력 상승";
-                GameManager.Instance.playerables[0].damage += 5;
+                //GameManager.Instance.playerables[0].damage += 5;
+                foreach ( TowerData towerData in towerDatabase.towers)
+                {
+                    if(towerData.towerName == "knight")
+                    {
+                        towerData.damage += 5;
+                    }
+                string updatedJson = JsonUtility.ToJson(towerData, true);
+                }
                 gold -= knightPrice;
             }
             else
@@ -94,7 +102,15 @@ namespace TowerDefense
             if (gold >= archerPrice)
             {
                 BuyNoticeText.text = $"궁수 공격력 상승";
-                GameManager.Instance.playerables[1].damage += 5;
+                //GameManager.Instance.playerables[1].damage += 5;
+                foreach (TowerData towerData in towerDatabase.towers)
+                {
+                    if (towerData.id == "archer")
+                    {
+                        towerData.damage += 5;
+                    }
+                    string updatedJson = JsonUtility.ToJson(towerData, true);
+                }
                 gold -= archerPrice;
             }
             else
@@ -108,7 +124,15 @@ namespace TowerDefense
             if (gold >= priestPrice)
             {
                 BuyNoticeText.text = $"사제 체력 상승";
-                GameManager.Instance.playerables[2].maxHp += 5;
+                //GameManager.Instance.playerables[2].maxHp += 5;
+                foreach (TowerData towerData in towerDatabase.towers)
+                {
+                    if (towerData.id == "priest")
+                    {
+                        towerData.MaxHp += 5;
+                    }
+                    string updatedJson = JsonUtility.ToJson(towerData, true);
+                }
                 gold -= priestPrice;
             }
             else
@@ -119,12 +143,14 @@ namespace TowerDefense
         public void OnShopMenu()
         {
             GameMenu.SetActive(false);
+            SelectTower.SetActive(false);
             ShopMenu.SetActive(true);
         }
         public void OnReturnGameMenu()
         {
             ShopMenu.SetActive(false);
             GameMenu.SetActive(true);
+            SelectTower.SetActive(true);
         }
         IEnumerator Notice()
         {

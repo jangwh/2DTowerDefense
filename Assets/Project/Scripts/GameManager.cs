@@ -13,7 +13,6 @@ namespace TowerDefense
 
         public TowerDatabase towerDatabase;
         public Transform[] towerSpawnPositions;
-        private List<TowerData> selectedTowers = new List<TowerData>();
         public GameObject dragSlotPrefab;
         public Transform dragSlotParent;
 
@@ -64,59 +63,7 @@ namespace TowerDefense
             enemySpawnRoutine = StartCoroutine(EnemySpawnCoroutine());
             coinplus = StartCoroutine(CoinPlus());
 
-            LoadSelectedTowers();
-            SpawnSelectedTowers();
             SetupDragSlots();
-            SetupDropTowers();
-        }
-
-        void LoadSelectedTowers()
-        {
-            string json = PlayerPrefs.GetString("SelectedTowers", "");
-
-            if (string.IsNullOrEmpty(json))
-            {
-                Debug.LogWarning("선택된 타워 데이터가 없습니다. 기본 타워를 로드합니다.");
-                return;
-            }
-
-            SelectedTowerWrapper wrapper = JsonUtility.FromJson<SelectedTowerWrapper>(json);
-            if (wrapper == null || wrapper.selected == null)
-            {
-                Debug.LogWarning("선택된 타워 JSON 파싱 실패");
-                return;
-            }
-
-            foreach (string id in wrapper.selected)
-            {
-                TowerData data = towerDatabase.FindById(id);
-                if (data == null)
-                {
-                    Debug.LogError($"❌ TowerDatabase에서 ID '{id}' 찾지 못함");
-                }
-                else
-                {
-                    selectedTowers.Add(data);
-                }
-            }
-        }
-
-        void SpawnSelectedTowers()
-        {
-            for (int i = 0; i < selectedTowers.Count && i < towerSpawnPositions.Length; i++)
-            {
-                TowerData data = selectedTowers[i];
-                GameObject towerPrefab = Resources.Load<GameObject>(data.prefabPath);
-
-                if (towerPrefab == null)
-                {
-                    Debug.LogError($"❌ 프리팹 로드 실패: {data.prefabPath}");
-                    continue;
-                }
-
-                Vector3 spawnPos = towerSpawnPositions[i].position;
-                GameObject obj = Instantiate(towerPrefab, spawnPos, Quaternion.identity);
-            }
         }
 
         void SetupDragSlots()
@@ -144,6 +91,7 @@ namespace TowerDefense
                         prefab = Resources.Load<GameObject>(data.prefabPath)
                     };
                     spritePrefabMappings.Add(mapping);
+                    slot.SetActive(false);
                 }
             }
 
@@ -152,15 +100,6 @@ namespace TowerDefense
                 string slotId = slot.name.Replace("Slot", "").ToLower();
                 bool isSelected = wrapper.selected.Contains(slotId);
                 slot.SetActive(isSelected);
-            }
-        }
-
-        void SetupDropTowers()
-        {
-            DropTower[] dropTowers = FindObjectsOfType<DropTower>();
-            foreach (DropTower drop in dropTowers)
-            {
-                drop.spritePrefabMappings = spritePrefabMappings;
             }
         }
 

@@ -12,7 +12,7 @@ namespace TowerDefense
         public float MaxHp;
         public int damage;
         public float AttackInterval;
-        public string prefabPath; // Resources 폴더에서 불러오기 위함
+        public string prefabPath;
         public string spritePath;
     }
 }

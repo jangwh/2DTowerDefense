@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 namespace TowerDefense
@@ -7,13 +7,13 @@ namespace TowerDefense
     {
         private const string SaveKey = "MaxTowerSlot";
 
-        // ½½·Ô ¼ö ºÒ·¯¿À±â (±âº»°ª 3)
+        // ìŠ¬ë¡¯ ìˆ˜ ë¶ˆëŸ¬ì˜¤ê¸° (ê¸°ë³¸ê°’ 3)
         public static int GetMaxSlot()
         {
             return PlayerPrefs.GetInt(SaveKey, 3);
         }
 
-        // ½½·Ô ¼ö ÀúÀå
+        // ìŠ¬ë¡¯ ìˆ˜ ì €ìž¥
         public static void SetMaxSlot(int count)
         {
             PlayerPrefs.SetInt(SaveKey, count);

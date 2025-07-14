@@ -21,6 +21,8 @@ namespace TowerDefense
             TowerText[0].text = $"Knight : {GameManager.Instance.towerCoin[0]}";
             TowerText[1].text = $"Archer : {GameManager.Instance.towerCoin[1]}";
             TowerText[2].text = $"Priest : {GameManager.Instance.towerCoin[2]}";
+            TowerText[3].text = $"Soldier : {GameManager.Instance.towerCoin[3]}";
+            TowerText[4].text = $"Thief : {GameManager.Instance.towerCoin[4]}";
             CellText.text = $"판매";
         }
         void Update()
