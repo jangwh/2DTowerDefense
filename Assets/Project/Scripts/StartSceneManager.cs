@@ -1,4 +1,4 @@
-// Start ¾À¿¡¼­ Å¸¿ö ¼±ÅÃ, ÀúÀå¸¸ ´ã´ç (GameManager ºĞ¸® ¹öÀü)
+ï»¿// Start ì”¬ì—ì„œ íƒ€ì›Œ ì„ íƒ, ì €ì¥ë§Œ ë‹´ë‹¹ (GameManager ë¶„ë¦¬ ë²„ì „)
 
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,13 +9,24 @@ namespace TowerDefense
     public class StartSceneManager : MonoBehaviour
     {
         public TowerDatabase towerDatabase;
+        public Transform gridParent;   // ìŠ¬ë¡¯ë“¤ì´ ë“¤ì–´ê°ˆ ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ (ì˜ˆ: Grid Layout Group)
+        public GameObject slotPrefab;  // TowerSlotUI í”„ë¦¬íŒ¹
+        public Sprite defaultSprite;
 
-        // ¼±ÅÃÇÑ Å¸¿ö ID ¸ñ·Ï (¿¹: ["knight", "archer", "priest"])
+        // ì„ íƒí•œ íƒ€ì›Œ ID ëª©ë¡ (ì˜ˆ: ["knight", "archer", "priest"])
         public List<string> selectedTowerIds = new List<string>();
 
-        // ÃÖ´ë ¼±ÅÃ °¡´ÉÇÑ Å¸¿ö °³¼ö
+        // ìµœëŒ€ ì„ íƒ ê°€ëŠ¥í•œ íƒ€ì›Œ ê°œìˆ˜
         public int maxSelectableTowers = 5;
-
+        void Start()
+        {
+            foreach (TowerData data in towerDatabase.towers)
+            {
+                GameObject slot = Instantiate(slotPrefab, gridParent);
+                TowerSlotUI slotUI = slot.GetComponent<TowerSlotUI>();
+                slotUI.Init(data, this);
+            }
+        }
         public void ToggleTowerSelection(string id)
         {
             if (selectedTowerIds.Contains(id))
@@ -28,20 +39,22 @@ namespace TowerDefense
             }
             else
             {
-                Debug.Log("ÃÖ´ë ¼±ÅÃ ¼ö ÃÊ°ú");
+                Debug.Log("ìµœëŒ€ ì„ íƒ ìˆ˜ ì´ˆê³¼");
             }
+
+            Debug.Log("ì„ íƒëœ íƒ€ì›Œ: " + string.Join(", ", selectedTowerIds));
         }
 
         public void StartGame()
         {
-            Debug.Log("StartGame() È£ÃâµÊ");
+            Debug.Log("StartGame() í˜¸ì¶œë¨");
             if (selectedTowerIds.Count == 0)
             {
-                Debug.LogWarning("¼±ÅÃµÈ Å¸¿ö°¡ ¾ø½À´Ï´Ù.");
+                Debug.LogWarning("ì„ íƒëœ íƒ€ì›Œê°€ ì—†ìŠµë‹ˆë‹¤.");
                 return;
             }
 
-            // JSON ÀúÀå
+            // JSON ì €ì¥
             SelectedTowerWrapper wrapper = new SelectedTowerWrapper
             {
                 selected = selectedTowerIds
@@ -51,7 +64,7 @@ namespace TowerDefense
             PlayerPrefs.SetString("SelectedTowers", json);
             PlayerPrefs.Save();
 
-            Debug.Log("°ÔÀÓ ½ÃÀÛ - ¼±ÅÃµÈ Å¸¿ö: " + string.Join(", ", selectedTowerIds));
+            Debug.Log("ê²Œì„ ì‹œì‘ - ì„ íƒëœ íƒ€ì›Œ: " + string.Join(", ", selectedTowerIds));
 
             SceneManager.LoadScene("2DTDPlay"); 
         }

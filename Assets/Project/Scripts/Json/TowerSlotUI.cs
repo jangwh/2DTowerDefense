@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 namespace TowerDefense
 {
@@ -9,9 +9,9 @@ namespace TowerDefense
         public Button selectButton;
 
         private string towerId;
-        private TowerSelectorUI selector;
+        private StartSceneManager selector;
 
-        public void Init(TowerData data, TowerSelectorUI selector)
+        public void Init(TowerData data, StartSceneManager selector)
         {
             this.selector = selector;
             this.towerId = data.id;
@@ -19,12 +19,12 @@ namespace TowerDefense
             towerNameText.text = data.towerName;
 
             Sprite loadedSprite = Resources.Load<Sprite>(data.spritePath);
-            towerImage.sprite = loadedSprite != null ? loadedSprite : selector.defaultSprite;
+            towerImage.sprite = loadedSprite;
 
             selectButton.onClick.AddListener(() =>
             {
-                selector.ToggleSelect(towerId);
-                // ¼±ÅÃ »óÅÂ¿¡ µû¶ó UI È¿°ú ¹Ù²Ù±â (»ö»ó µî)
+                selector.ToggleTowerSelection(towerId);
+                // ì„ íƒ ìƒíƒœì— ë”°ë¼ UI íš¨ê³¼ ë°”ê¾¸ê¸° (ìƒ‰ìƒ ë“±)
             });
         }
     }

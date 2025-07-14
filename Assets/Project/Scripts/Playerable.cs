@@ -43,12 +43,12 @@ namespace TowerDefense
 
             if (Time.time > lastAttackTime + attackInterval)
             {
-                if(charName != "Priest")
+                if(charName != "priest")
                 {
                     Attack(rayHit);
                     lastAttackTime = Time.time;
                 }
-                else if(charName == "Priest")
+                else if(charName == "priest")
                 {
                     isSpell = true;
                     animator.SetBool("isSpell", isSpell);
