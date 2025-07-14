@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using Lean.Pool;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
-using Lean.Pool;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace TowerDefense
 {
@@ -93,6 +94,8 @@ namespace TowerDefense
                     spritePrefabMappings.Add(mapping);
                     slot.SetActive(false);
                 }
+
+                //UnityEngine.Debug.Log($"[타워 확인] {data.id} - Damage: {data.damage}, MaxHp: {data.MaxHp}");
             }
 
             foreach (GameObject slot in allSlots)
@@ -102,7 +105,6 @@ namespace TowerDefense
                 slot.SetActive(isSelected);
             }
         }
-
         void Update()
         {
             bool isRoundValid = roundCount >= 0 && roundCount < enemyCount.Length;

@@ -25,6 +25,15 @@ namespace TowerDefense
         {
             this.dropTower = dropTower;
         }
+        public void InitTower(TowerData data)
+        {
+            damage = data.damage;
+            maxHp = data.MaxHp;
+            currentHp = maxHp;
+            charName = data.towerName;
+
+            Debug.Log($" InitTower 완료: {charName}, 공격력: {damage}, 체력: {maxHp}");
+        }
         void Awake()
         {
             animator = GetComponent<Animator>();

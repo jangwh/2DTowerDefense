@@ -965,7 +965,7 @@ MonoBehaviour:
   GameMenu: {fileID: 17577937}
   ShopMenu: {fileID: 1488223084}
   SelectTower: {fileID: 865400882}
-  TowerDatabase: {fileID: 770031697}
+  towerDatabase: {fileID: 770031697}
   KnightPrice: {fileID: 675926638}
   ArcherPrice: {fileID: 929016764}
   PriestPrice: {fileID: 1974719889}

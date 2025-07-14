@@ -74,21 +74,30 @@ namespace TowerDefense
                 slotText.text = "최대 슬롯입니다";
             }
         }
+        void SaveTowerDatabase()
+        {
+            TowerDatabase.TowerDataListWrapper wrapper = new TowerDatabase.TowerDataListWrapper
+            {
+                towers = towerDatabase.towers
+            };
+            string json = JsonUtility.ToJson(wrapper, true);
+            PlayerPrefs.SetString("TowerDataOverride", json);
+            PlayerPrefs.Save();
+        }
         public void OnKnightUpgrade()
         {
             StartCoroutine(Notice());
             if (gold >= knightPrice)
             {
                 BuyNoticeText.text = $"기사 공격력 상승";
-                //GameManager.Instance.playerables[0].damage += 5;
                 foreach ( TowerData towerData in towerDatabase.towers)
                 {
                     if(towerData.towerName == "knight")
                     {
                         towerData.damage += 5;
                     }
-                string updatedJson = JsonUtility.ToJson(towerData, true);
                 }
+                SaveTowerDatabase();
                 gold -= knightPrice;
             }
             else
@@ -102,15 +111,15 @@ namespace TowerDefense
             if (gold >= archerPrice)
             {
                 BuyNoticeText.text = $"궁수 공격력 상승";
-                //GameManager.Instance.playerables[1].damage += 5;
                 foreach (TowerData towerData in towerDatabase.towers)
                 {
                     if (towerData.id == "archer")
                     {
                         towerData.damage += 5;
+
                     }
-                    string updatedJson = JsonUtility.ToJson(towerData, true);
                 }
+                SaveTowerDatabase();
                 gold -= archerPrice;
             }
             else
@@ -124,15 +133,14 @@ namespace TowerDefense
             if (gold >= priestPrice)
             {
                 BuyNoticeText.text = $"사제 체력 상승";
-                //GameManager.Instance.playerables[2].maxHp += 5;
                 foreach (TowerData towerData in towerDatabase.towers)
                 {
                     if (towerData.id == "priest")
                     {
                         towerData.MaxHp += 5;
                     }
-                    string updatedJson = JsonUtility.ToJson(towerData, true);
                 }
+                SaveTowerDatabase();
                 gold -= priestPrice;
             }
             else

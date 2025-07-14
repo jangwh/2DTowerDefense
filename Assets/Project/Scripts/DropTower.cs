@@ -85,6 +85,7 @@ namespace TowerDefense {
 
                     Vector3 worldPos = Camera.main.ScreenToWorldPoint(spawnPosition);
                     worldPos.z = 0;
+                    
                     switch (prefab.GetComponent<Playerable>().charName)
                     {
                         case "knight":
@@ -94,7 +95,9 @@ namespace TowerDefense {
                                 GameManager.Instance.coin -= GameManager.Instance.towerCoin[0];
                                 GameObject playerObj = LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
                                 Playerable player = playerObj.GetComponent<Playerable>();
-                                player.Init(this);
+                                player.Init(this); 
+                                TowerData data = GameManager.Instance.towerDatabase.FindById(player.charName.ToLower());  // 예: "knight"
+                                player.InitTower(data);
                             }
                             break;
                         case "archer":
@@ -105,6 +108,8 @@ namespace TowerDefense {
                                 GameObject playerObj = LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
                                 Playerable player = playerObj.GetComponent<Playerable>();
                                 player.Init(this);
+                                TowerData data = GameManager.Instance.towerDatabase.FindById(player.charName.ToLower());  // 예: "knight"
+                                player.InitTower(data);
                             }
                             break;
                         case "priest":
@@ -116,6 +121,8 @@ namespace TowerDefense {
                                 Playerable player = playerObj.GetComponent<Playerable>();
                                 player.Init(this);
                                 GameManager.priestNum++;
+                                TowerData data = GameManager.Instance.towerDatabase.FindById(player.charName.ToLower());  // 예: "knight"
+                                player.InitTower(data);
                             }
                             break;
                         case "soldier":
@@ -126,6 +133,8 @@ namespace TowerDefense {
                                 GameObject playerObj = LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
                                 Playerable player = playerObj.GetComponent<Playerable>();
                                 player.Init(this);
+                                TowerData data = GameManager.Instance.towerDatabase.FindById(player.charName.ToLower());  // 예: "knight"
+                                player.InitTower(data);
                             }
                             break;
                         case "thief":
@@ -136,6 +145,8 @@ namespace TowerDefense {
                                 GameObject playerObj = LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
                                 Playerable player = playerObj.GetComponent<Playerable>();
                                 player.Init(this);
+                                TowerData data = GameManager.Instance.towerDatabase.FindById(player.charName.ToLower());  // 예: "knight"
+                                player.InitTower(data);
                             }
                             break;
                     }
