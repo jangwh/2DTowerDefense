@@ -1,6 +1,4 @@
-﻿// Start 씬에서 타워 선택, 저장만 담당 (GameManager 분리 버전)
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,7 +15,7 @@ namespace TowerDefense
         public List<string> selectedTowerIds = new List<string>();
 
         // 최대 선택 가능한 타워 개수
-        public int maxSelectableTowers = 5;
+        //public int maxSelectableTowers = 5;
         void Start()
         {
             foreach (TowerData data in towerDatabase.towers)
@@ -29,6 +27,7 @@ namespace TowerDefense
         }
         public void ToggleTowerSelection(string id)
         {
+            int maxSelectableTowers = TowerSlotSave.GetMaxSlot();
             if (selectedTowerIds.Contains(id))
             {
                 selectedTowerIds.Remove(id);

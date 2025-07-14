@@ -94,8 +94,6 @@ namespace TowerDefense
                     spritePrefabMappings.Add(mapping);
                     slot.SetActive(false);
                 }
-
-                //UnityEngine.Debug.Log($"[타워 확인] {data.id} - Damage: {data.damage}, MaxHp: {data.MaxHp}");
             }
 
             foreach (GameObject slot in allSlots)
@@ -212,7 +210,7 @@ namespace TowerDefense
             {
                 string name = obj.GetComponent<Playerable>().charName;
                 LeanPool.Despawn(obj);
-                if (name == "Priest") priestNum--;
+                if (name == "priest") priestNum--;
             }
 
             roundCount++;
