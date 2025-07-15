@@ -155,7 +155,7 @@ RectTransform:
   - {fileID: 1826957090}
   - {fileID: 211531419}
   - {fileID: 2123964051}
-  - {fileID: 1245796764}
+  - {fileID: 1364245569}
   m_Father: {fileID: 219815620}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1150,7 +1150,7 @@ MonoBehaviour:
   BestScoreText: {fileID: 930034343}
   BuyNoticeImage: {fileID: 1673502119}
   BuyNoticeText: {fileID: 394993031}
-  useTower: {fileID: 1245796766}
+  useTower: {fileID: 1364245571}
   towerPrice: 6400000064000000640000006400000064000000
   buyButtons:
   - {fileID: 1644275386}
@@ -2579,7 +2579,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1245796763
+--- !u!1 &1364245568
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2587,24 +2587,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1245796764}
-  - component: {fileID: 1245796767}
-  - component: {fileID: 1245796766}
-  - component: {fileID: 1245796765}
+  - component: {fileID: 1364245569}
+  - component: {fileID: 1364245572}
+  - component: {fileID: 1364245571}
+  - component: {fileID: 1364245570}
   m_Layer: 5
-  m_Name: UseTower
+  m_Name: UserTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &1245796764
+--- !u!224 &1364245569
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1245796763}
+  m_GameObject: {fileID: 1364245568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -2615,15 +2615,15 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 100}
-  m_SizeDelta: {x: 500, y: 120}
+  m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1245796765
+--- !u!114 &1364245570
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1245796763}
+  m_GameObject: {fileID: 1364245568}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
@@ -2632,13 +2632,13 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &1245796766
+--- !u!114 &1364245571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1245796763}
+  m_GameObject: {fileID: 1364245568}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
@@ -2654,10 +2654,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 3
     m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -2665,14 +2665,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 3/5
---- !u!222 &1245796767
+  m_Text: 3
+--- !u!222 &1364245572
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1245796763}
+  m_GameObject: {fileID: 1364245568}
   m_CullTransparentMesh: 1
 --- !u!1 &1387603753
 GameObject:

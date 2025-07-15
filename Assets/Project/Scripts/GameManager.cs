@@ -60,6 +60,7 @@ namespace TowerDefense
 
         void Start()
         {
+            ScoreSave.currentScore = 0;
             currentLifeCount = MaxLifeCount;
             enemySpawnRoutine = StartCoroutine(EnemySpawnCoroutine());
             coinplus = StartCoroutine(CoinPlus());
