@@ -5,7 +5,6 @@ namespace TowerDefense
     public class TowerSlotUI : MonoBehaviour
     {
         public Image towerImage;
-        public Text towerNameText;
         public Button selectButton;
 
         private string towerId;

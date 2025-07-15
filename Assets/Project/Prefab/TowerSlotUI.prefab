@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6908664693553201976
 RectTransform:
   m_ObjectHideFlags: 0
@@ -329,7 +329,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerImage: {fileID: 7005467211315447931}
-  towerNameText: {fileID: 4895271578779826326}
   selectButton: {fileID: 4149356544626802948}
 --- !u!222 &-3591626578790618987
 CanvasRenderer:
