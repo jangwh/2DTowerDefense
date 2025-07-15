@@ -141,8 +141,16 @@ namespace TowerDefense
         {
             if (other.CompareTag("LifeZone"))
             {
-                GameManager.Instance.currentLifeCount--;
-                StartCoroutine(DieAnimation());
+                if (charName == "Dreadnought")
+                {
+                    GameManager.Instance.currentLifeCount -= 3;
+                    StartCoroutine(DieAnimation());
+                }
+                else
+                {
+                    GameManager.Instance.currentLifeCount--;
+                    StartCoroutine(DieAnimation());
+                }
             }
         }
     }
