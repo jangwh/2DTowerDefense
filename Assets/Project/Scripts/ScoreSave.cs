@@ -24,7 +24,7 @@ namespace TowerDefense
             return PlayerPrefs.GetInt("BestScore", 0);
         }
         
-        public static void SaveGold()
+        public static void SaveGold(int savegold)
         {
             if (currentGold == 0)
             {
@@ -32,6 +32,7 @@ namespace TowerDefense
             }
             else
             {
+                currentGold -= savegold;
                 PlayerPrefs.SetInt("Gold", currentGold);
             }
             PlayerPrefs.Save();

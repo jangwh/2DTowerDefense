@@ -18,7 +18,7 @@ namespace TowerDefense
         //public int maxSelectableTowers = 5;
         void Start()
         {
-            selectedTowerIds.Clear(); // ✅ 선택 목록 초기화 (중복 저장 방지)
+            selectedTowerIds.Clear(); // 선택 목록 초기화 (중복 저장 방지)
 
             for (int i = 0; i < towerDatabase.towers.Count; i++)
             {
@@ -27,7 +27,7 @@ namespace TowerDefense
                 TowerSlotUI slotUI = slot.GetComponent<TowerSlotUI>();
                 slotUI.Init(data, this);
 
-                // ✅ 처음 3개만 선택 상태로 강제 설정
+                // 처음 3개만 선택 상태로 강제 설정
                 if (i < 3)
                 {
                     selectedTowerIds.Add(data.id);

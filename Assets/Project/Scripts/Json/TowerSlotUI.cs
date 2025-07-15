@@ -12,13 +12,13 @@ namespace TowerDefense
         private StartSceneManager selector;
 
         private bool isSelected = false;
-        private StartSceneManager manager;
+        private StartSceneManager startscenemanager;
         private TowerData towerData;
 
         public void Init(TowerData data, StartSceneManager mgr)
         {
             towerData = data;
-            manager = mgr;
+            startscenemanager = mgr;
             towerImage.sprite = Resources.Load<Sprite>(data.spritePath);
             isSelected = false;
             UpdateVisual();
@@ -30,10 +30,10 @@ namespace TowerDefense
         {
             isSelected = value;
 
-            if (isSelected && !manager.selectedTowerIds.Contains(towerData.id))
-                manager.selectedTowerIds.Add(towerData.id);
-            else if (!isSelected && manager.selectedTowerIds.Contains(towerData.id))
-                manager.selectedTowerIds.Remove(towerData.id);
+            if (isSelected && !startscenemanager.selectedTowerIds.Contains(towerData.id))
+                startscenemanager.selectedTowerIds.Add(towerData.id);
+            else if (!isSelected && startscenemanager.selectedTowerIds.Contains(towerData.id))
+                startscenemanager.selectedTowerIds.Remove(towerData.id);
             UpdateVisual();
 
         }
@@ -41,7 +41,7 @@ namespace TowerDefense
         {
             int maxSlots = TowerSlotSave.GetMaxSlot();
 
-            if (!isSelected && manager.selectedTowerIds.Count >= maxSlots)
+            if (!isSelected && startscenemanager.selectedTowerIds.Count >= maxSlots)
             {
                 Debug.Log("슬롯 제한 초과");
                 return;
@@ -50,9 +50,9 @@ namespace TowerDefense
             isSelected = !isSelected;
 
             if (isSelected)
-                manager.selectedTowerIds.Add(towerData.id);
+                startscenemanager.selectedTowerIds.Add(towerData.id);
             else
-                manager.selectedTowerIds.Remove(towerData.id);
+                startscenemanager.selectedTowerIds.Remove(towerData.id);
             UpdateVisual();
 
         }

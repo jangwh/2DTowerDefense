@@ -139,7 +139,7 @@ namespace TowerDefense
         }
         IEnumerator DieAnimation()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1f);
             Revive();
             LeanPool.Despawn(this);
         }

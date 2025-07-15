@@ -166,7 +166,7 @@ namespace TowerDefense
         void EnemySpawn()
         {
             if (tile == null) return;
-            int ranEnemy = Random.Range(0, enemies.Length);
+            int ranEnemy = Random.Range(0, 2);
             int ranTileY = Random.Range(-tile.genDisty, tile.genDisty + 1);
 
             Vector2 spawnPos = new Vector2((tile.genDistx * 2) + 1, (ranTileY * 2f) + 1f);
