@@ -26,18 +26,16 @@ namespace TowerDefense {
             Sprite dropSprite = GetDropSprite(eventData);
             GameObject prefab = GetPrefabFromSprite(dropSprite);
 
-            Debug.Log($"▶ 드래그된 스프라이트 이름: {dropSprite?.name}");
-            Debug.Log($"▶ 매핑된 프리팹: {prefab?.name}");
+            Debug.Log($"드래그된 스프라이트 이름: {dropSprite?.name}");
+            Debug.Log($"매핑된 프리팹: {prefab?.name}");
 
             if (dropSprite != null)
             {
 
                 if (receivingImage.overrideSprite != null)
                 {
-                    // 드롭된 아이템이 없으면 = 판매
                     if (prefab == null)
                     {
-                        // 타일 위에 있는 기존 유닛 제거
                         foreach (Transform child in tileGroup.GetComponent<TileGenerator>().towerParent)
                         {
                             Playerable player = child.GetComponent<Playerable>();
@@ -45,7 +43,6 @@ namespace TowerDefense {
                             {
                                 string name = player.charName;
 
-                                // 코인 환급
                                 switch (name)
                                 {
                                     case "knight":
@@ -66,20 +63,18 @@ namespace TowerDefense {
                                         break;
                                 }
                                 player.dropTower.receivingImage.overrideSprite = null;
-                                LeanPool.Despawn(child.gameObject); // 기존 유닛 제거
+                                LeanPool.Despawn(child.gameObject);
                                 break;
                             }
                         }
                         return;
                     }
-
-                    // 이미 타워가 있고, 또 다른 유닛을 드롭하려 하면 무시
                     return;
                 }
 
                 if (prefab != null)
                 {
-                    Vector3 spawnPosition = tileGroup.transform.position + GetWorldPositon(rect); // 드롭된 위치
+                    Vector3 spawnPosition = tileGroup.transform.position + GetWorldPositon(rect); 
 
                     Mathf.Abs(Camera.main.transform.position.z); 
 
@@ -196,22 +191,21 @@ namespace TowerDefense {
             {
                 if (mapping.sprite != null && mapping.prefab != null)
                 {
-                    // 🎯 이름으로 비교
                     if (mapping.sprite.name == sprite.name)
                     {
-                        Debug.Log($"✔ 매칭 성공: {sprite.name} → {mapping.prefab.name}");
+                        Debug.Log($"매칭 성공: {sprite.name} → {mapping.prefab.name}");
                         return mapping.prefab;
                     }
                 }
             }
 
-            Debug.LogWarning($"⛔ Sprite({sprite.name})에 해당하는 프리팹을 못 찾음");
+            Debug.LogWarning($"Sprite({sprite.name})에 해당하는 프리팹을 못 찾음");
             return null;
         }
         private Vector3 GetWorldPositon(RectTransform rectTransform)
         {
             Vector3[] corners = new Vector3[4];
-            rectTransform.GetWorldCorners(corners); //RectTransform의 꼭지점 좌표를 World 좌표로 가져옴
+            rectTransform.GetWorldCorners(corners); 
 
             Vector3 center = Vector3.zero;
             foreach( Vector3 corner in corners)

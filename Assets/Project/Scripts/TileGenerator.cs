@@ -12,7 +12,6 @@ namespace TowerDefense
         Transform tileGroup;
         public Transform towerParent;
         public GameObject[] tilePrefab;
-        //셀마다 1개의 타일을 생성하고, 그 타일 게임 오브젝트 참조를 유지할 Dictionary
         private Dictionary<Vector3Int, GameObject> tiles = new Dictionary<Vector3Int, GameObject>();
         public int genDistx = 5;
         public int genDisty = 5;
@@ -31,9 +30,9 @@ namespace TowerDefense
         }
         void Start()
         {
-            lastCell = grid.WorldToCell(tileGroup.position); //초기 위치 세팅
-            GenerteTiles(); //초기 타일 생성
-            GenerteEndTiles(); //라이프 타일 생성
+            lastCell = grid.WorldToCell(tileGroup.position);
+            GenerteTiles();
+            GenerteEndTiles();
         }
         //타일 생성
         void GenerteTiles()
@@ -48,18 +47,18 @@ namespace TowerDefense
                         if (x != genDistx)
                         {
                             Vector3 genPos = grid.GetCellCenterWorld(cell);
-                            genPos.z = 10; //타일을 살짤 화면 뒤쪽으로 밀어줌
+                            genPos.z = 10;
                             GameObject tile = Instantiate(tilePrefab[0], genPos, Quaternion.identity);
                             tile.transform.SetParent(transform);
-                            tiles.Add(cell, tile); //만약 키가 중복이 될 경우 excetion 발생 }
+                            tiles.Add(cell, tile);
                         }
                         else
                         {
                             Vector3 genPos = grid.GetCellCenterWorld(cell);
-                            genPos.z = 10; //타일을 살짤 화면 뒤쪽으로 밀어줌
+                            genPos.z = 10;
                             GameObject tile = Instantiate(tilePrefab[1], genPos, Quaternion.identity);
                             tile.transform.SetParent(transform);
-                            tiles.Add(cell, tile); //만약 키가 중복이 될 경우 excetion 발생 }
+                            tiles.Add(cell, tile); 
                         }
                     }
                 }
@@ -72,10 +71,10 @@ namespace TowerDefense
             {
                 Vector3Int cell = new Vector3Int(lastCell.x + x, lastCell.y + y);
                 Vector3 genPos = grid.GetCellCenterWorld(cell);
-                genPos.z = 10; //타일을 살짤 화면 뒤쪽으로 밀어줌
+                genPos.z = 10; 
                 GameObject tile = Instantiate(tilePrefab[2], genPos, Quaternion.identity);
                 tile.transform.SetParent(transform);
-                tiles.Add(cell, tile); //만약 키가 중복이 될 경우 excetion 발생 }
+                tiles.Add(cell, tile); 
             }
         }
     }

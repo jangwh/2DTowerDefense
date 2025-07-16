@@ -7,18 +7,15 @@ namespace TowerDefense
     public class StartSceneManager : MonoBehaviour
     {
         public TowerDatabase towerDatabase;
-        public Transform gridParent;   // 슬롯들이 들어갈 부모 오브젝트 (예: Grid Layout Group)
-        public GameObject slotPrefab;  // TowerSlotUI 프리팹
+        public Transform gridParent;
+        public GameObject slotPrefab;
         public Sprite defaultSprite;
 
-        // 선택한 타워 ID 목록 (예: ["knight", "archer", "priest"])
         public List<string> selectedTowerIds = new List<string>();
 
-        // 최대 선택 가능한 타워 개수
-        //public int maxSelectableTowers = 5;
         void Start()
         {
-            selectedTowerIds.Clear(); // 선택 목록 초기화 (중복 저장 방지)
+            selectedTowerIds.Clear(); 
 
             for (int i = 0; i < towerDatabase.towers.Count; i++)
             {
@@ -27,15 +24,14 @@ namespace TowerDefense
                 TowerSlotUI slotUI = slot.GetComponent<TowerSlotUI>();
                 slotUI.Init(data, this);
 
-                // 처음 3개만 선택 상태로 강제 설정
                 if (i < 3)
                 {
                     selectedTowerIds.Add(data.id);
-                    slotUI.SetSelected(true); // 직접 선택 적용
+                    slotUI.SetSelected(true);
                 }
                 else
                 {
-                    slotUI.SetSelected(false); // 나머지는 선택 해제
+                    slotUI.SetSelected(false); 
                 }
             }
         }
@@ -71,7 +67,6 @@ namespace TowerDefense
                 Debug.LogWarning("슬롯 수보다 많은 타워가 선택됨");
                 return;
             }
-            // JSON 저장
             SelectedTowerWrapper wrapper = new SelectedTowerWrapper
             {
                 selected = selectedTowerIds

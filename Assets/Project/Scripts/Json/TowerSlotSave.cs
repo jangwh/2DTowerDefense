@@ -12,13 +12,11 @@ namespace TowerDefense
         private const string SaveSoldier = "MaxSoldierUpgrade";
         private const string SaveThief = "MaxThiefUpgrade";
 
-        // 슬롯 수 불러오기 (기본값 3)
         public static int GetMaxSlot()
         {
             return PlayerPrefs.GetInt(SaveKey, 3);
         }
 
-        // 슬롯 수 저장
         public static void SetMaxSlot(int count)
         {
             PlayerPrefs.SetInt(SaveKey, count);

@@ -63,17 +63,12 @@ namespace TowerDefense
                     animator.SetBool("isSpell", isSpell);
                 }
             }
-
             Die();
         }
         void Attack(RaycastHit2D ray)
         {
-            //Debug.Log(">> Player 공격 시도");
-
             if (ray.collider != null && ray.collider.CompareTag("Enemy"))
             {
-                //Debug.Log("Player Ray Hit: " + ray.collider.name);
-
                 Enemy enemyInfo = ray.collider.GetComponent<Enemy>();
                 isAttack = true;
                 animator.SetBool("isAttack", isAttack);
@@ -92,7 +87,6 @@ namespace TowerDefense
                         audioSource.PlayOneShot(audioClip[0]);
                         break;
                 }
-                //Debug.Log(">> Enemy에게 데미지 줌!");
                 enemyInfo.TakeDamage(damage);
             }
             else
@@ -100,7 +94,6 @@ namespace TowerDefense
                 isAttack = false;
                 animator.SetBool("isAttack", isAttack);
             }
-
         }
         void Die()
         { 
