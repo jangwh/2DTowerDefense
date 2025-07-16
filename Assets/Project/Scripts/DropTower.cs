@@ -108,7 +108,7 @@ namespace TowerDefense {
                                 GameObject playerObj = LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
                                 Playerable player = playerObj.GetComponent<Playerable>();
                                 player.Init(this);
-                                TowerData data = GameManager.Instance.towerDatabase.FindById(player.charName.ToLower());  // 예: "knight"
+                                TowerData data = GameManager.Instance.towerDatabase.FindById(player.charName.ToLower());
                                 player.InitTower(data);
                             }
                             break;
@@ -121,7 +121,7 @@ namespace TowerDefense {
                                 Playerable player = playerObj.GetComponent<Playerable>();
                                 player.Init(this);
                                 GameManager.priestNum++;
-                                TowerData data = GameManager.Instance.towerDatabase.FindById(player.charName.ToLower());  // 예: "knight"
+                                TowerData data = GameManager.Instance.towerDatabase.FindById(player.charName.ToLower());
                                 player.InitTower(data);
                             }
                             break;
@@ -133,7 +133,7 @@ namespace TowerDefense {
                                 GameObject playerObj = LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
                                 Playerable player = playerObj.GetComponent<Playerable>();
                                 player.Init(this);
-                                TowerData data = GameManager.Instance.towerDatabase.FindById(player.charName.ToLower());  // 예: "knight"
+                                TowerData data = GameManager.Instance.towerDatabase.FindById(player.charName.ToLower());
                                 player.InitTower(data);
                             }
                             break;
@@ -145,7 +145,7 @@ namespace TowerDefense {
                                 GameObject playerObj = LeanPool.Spawn(prefab, worldPos, Quaternion.Euler(0, 180, 0), tileGroup.transform.GetComponent<TileGenerator>().towerParent);
                                 Playerable player = playerObj.GetComponent<Playerable>();
                                 player.Init(this);
-                                TowerData data = GameManager.Instance.towerDatabase.FindById(player.charName.ToLower());  // 예: "knight"
+                                TowerData data = GameManager.Instance.towerDatabase.FindById(player.charName.ToLower());
                                 player.InitTower(data);
                             }
                             break;

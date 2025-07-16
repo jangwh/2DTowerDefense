@@ -3515,8 +3515,6 @@ MonoBehaviour:
   - {fileID: 1647674849}
   - {fileID: 825318247}
   - {fileID: 1000947724}
-  dragSlotPrefab: {fileID: 4266407619533999191, guid: 11494ff16e74d03478695e04a457217c, type: 3}
-  dragSlotParent: {fileID: 1932394227}
   spritePrefabMappings: []
   allSlots:
   - {fileID: 947590990}

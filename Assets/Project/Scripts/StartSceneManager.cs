@@ -68,7 +68,7 @@ namespace TowerDefense
             }
             if (selectedTowerIds.Count > TowerSlotSave.GetMaxSlot())
             {
-                Debug.LogWarning("슬롯 수보다 많은 타워가 선택됨 (버그 가능성)");
+                Debug.LogWarning("슬롯 수보다 많은 타워가 선택됨");
                 return;
             }
             // JSON 저장

@@ -14,8 +14,6 @@ namespace TowerDefense
 
         public TowerDatabase towerDatabase;
         public Transform[] towerSpawnPositions;
-        public GameObject dragSlotPrefab;
-        public Transform dragSlotParent;
 
         public List<SpriteToPrefab> spritePrefabMappings;
         public List<GameObject> allSlots;
@@ -74,28 +72,6 @@ namespace TowerDefense
             SelectedTowerWrapper wrapper = JsonUtility.FromJson<SelectedTowerWrapper>(json);
 
             if (wrapper == null || wrapper.selected == null) return;
-
-            foreach (string id in wrapper.selected)
-            {
-                TowerData data = towerDatabase.FindById(id);
-                if (data == null) continue;
-
-                GameObject slot = Instantiate(dragSlotPrefab, dragSlotParent);
-                Image image = slot.GetComponent<Image>();
-                if (image != null)
-                {
-                    Sprite sprite = Resources.Load<Sprite>(data.spritePath);
-                    image.sprite = sprite;
-
-                    SpriteToPrefab mapping = new SpriteToPrefab
-                    {
-                        sprite = sprite,
-                        prefab = Resources.Load<GameObject>(data.prefabPath)
-                    };
-                    spritePrefabMappings.Add(mapping);
-                    slot.SetActive(false);
-                }
-            }
 
             foreach (GameObject slot in allSlots)
             {
