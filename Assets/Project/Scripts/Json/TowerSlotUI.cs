@@ -7,9 +7,6 @@ namespace TowerDefense
         public Image towerImage;
         public Button selectButton;
 
-        private string towerId;
-        private StartSceneManager selector;
-
         private bool isSelected = false;
         private StartSceneManager startscenemanager;
         private TowerData towerData;
