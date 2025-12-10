@@ -12,21 +12,21 @@ Unity를 활용하여 2D로 제작하였습니다
 
 ## 주요 기능
 2. 주요 기능
->2.1 드래그 앤 드롭
->> 설치할 타워를 클릭 후 드래그
->> 원하는 위치에 드랍 할 시 타워가 설치
+2.1 드래그 앤 드롭
+* 설치할 타워를 클릭 후 드래그
+* 원하는 위치에 드랍 할 시 타워가 설치
 
->2.2 오브젝트 풀링
->> LeanPool을 활용하여 오브젝트 풀링 구현
+2.2 오브젝트 풀링
+* LeanPool을 활용하여 오브젝트 풀링 구현
 
->2.3 데이터관리
->>Json을 활용하여 데이터를 관리
+2.3 데이터관리
+*Json을 활용하여 데이터를 관리
 
 ## 기술 스택
 3. 기술 스택
-> C#
-> Unity
-> Fork + Github(형상 관리)
-> Drag & Drop
-> LeanPool 기반 ObjectPooling
-> Json 데이터 관리
+* C#
+* Unity
+* Fork + Github(형상 관리)
+* Drag & Drop
+* LeanPool 기반 ObjectPooling
+* Json 데이터 관리
