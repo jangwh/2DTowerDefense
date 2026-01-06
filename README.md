@@ -24,7 +24,13 @@ Unity를 활용하여 2D로 제작하였습니다
 2.3 데이터관리
 *Json을 활용하여 데이터를 관리
 
-## 3. 기술 스택
+## 3. 플로우차트 및 다이어그램
+
+### 3.1 플로우 차트
+
+<img width="2916" height="1193" alt="Image" src="https://github.com/user-attachments/assets/1df6d1ea-7b20-479d-b959-aa6bc4ac9e22" />
+
+## 4. 기술 스택
    
 * C#
 * Unity
