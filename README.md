@@ -39,7 +39,7 @@ Unity를 활용하여 2D로 제작하였습니다
 
 #### 게임플레이 다이어그램
 
-<img width="332" height="169" alt="Image" src="https://github.com/user-attachments/assets/94e810db-b428-4794-abda-e75bc61b6ec0" />
+<img width="814" height="376" alt="Image" src="https://github.com/user-attachments/assets/357c2c1a-e8e2-4dab-97a2-aca81e645cdf" />
 
 ------------------------------------------------------------------------------
 
@@ -51,7 +51,7 @@ Unity를 활용하여 2D로 제작하였습니다
 
 #### 상점 다이어그램
 
-<img width="814" height="376" alt="Image" src="https://github.com/user-attachments/assets/357c2c1a-e8e2-4dab-97a2-aca81e645cdf" />
+<img width="332" height="169" alt="Image" src="https://github.com/user-attachments/assets/94e810db-b428-4794-abda-e75bc61b6ec0" />
 
 ------------------------------------------------------------------------------
 
