@@ -28,7 +28,7 @@ Unity를 활용하여 2D로 제작하였습니다
 
 * GenerteTiles() : genDistx, genDisty 범위를 기준으로 이중 반복문 실행, 셀 좌표 기준으로 타일 존재 여부 확인
 
-###[GameManager](Assets/Project/Scripts/GameManager.cs)
+### [GameManager](Assets/Project/Scripts/GameManager.cs)
 
 #### 💡 역할
 
@@ -44,7 +44,7 @@ Unity를 활용하여 2D로 제작하였습니다
 
 * OnNextRound() : 다음 라운드 전환 처리
 
-###[DropTower](Assets/Project/Scripts/DropTower.cs)
+### [DropTower](Assets/Project/Scripts/DropTower.cs)
 
 #### 💡 역할
 
@@ -60,7 +60,7 @@ Unity를 활용하여 2D로 제작하였습니다
 
 * GetWorldPositon(RectTransform rectTransform) : UI RectTransform의 월드 코너 좌표를 기반으로 정확한 타워 월드 스폰 위치 계산
 
-###[DragTower](Assets/Project/Scripts/DragTower.cs)
+### [DragTower](Assets/Project/Scripts/DragTower.cs)
 
 #### 💡 역할
 
@@ -72,19 +72,19 @@ Unity를 활용하여 2D로 제작하였습니다
 
 ### 2.2 데이터
 
-###[TowerDatabase](Assets/Project/Scripts/Json/TowerDatabase.cs)
+### [TowerDatabase](Assets/Project/Scripts/Json/TowerDatabase.cs)
 
 #### 💡 역할
 
 * 타워 디펜스 게임에서 사용되는 모든 타워의 데이터 저장소 클래스입니다.
 
-###[TowerSlotSave](Assets/Project/Scripts/Json/TowerSlotSave.cs)
+### [TowerSlotSave](Assets/Project/Scripts/Json/TowerSlotSave.cs)
 
 #### 💡 역할
 
 * 플레이어의 성장 데이터를 PlayerPrefs 기반으로 저장,조회하는 저장 클래스입니다.
 
-###[ScoreSave](Assets/Project/Scripts/ScoreSave.cs)
+### [ScoreSave](Assets/Project/Scripts/ScoreSave.cs)
 
 #### 💡 역할
 
@@ -92,7 +92,7 @@ Unity를 활용하여 2D로 제작하였습니다
 
 ### 2.3 상점
 
-###[ShopManager](Assets/Project/Scripts/ShopManager.cs)
+### [ShopManager](Assets/Project/Scripts/ShopManager.cs)
 
 #### 💡 역할
 
