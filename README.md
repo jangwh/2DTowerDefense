@@ -12,9 +12,35 @@ Unity를 활용하여 2D로 제작하였습니다
 
 개발기간 : 2025.07.07 ~ 2525.07.18
 
-## 2. 주요 기능
+## 2. 플로우차트 및 다이어그램
+
+### 2.1 플로우 차트
+
+<img width="2916" height="1193" alt="Image" src="https://github.com/user-attachments/assets/1df6d1ea-7b20-479d-b959-aa6bc4ac9e22" />
+
+------------------------------------------------------------------------------
+
+### 2.2 다이어그램
+
+#### 게임플레이 다이어그램
+
+<img width="814" height="376" alt="Image" src="https://github.com/user-attachments/assets/357c2c1a-e8e2-4dab-97a2-aca81e645cdf" />
+
+------------------------------------------------------------------------------
+
+#### 데이터 다이어그램
+
+<img width="598" height="344" alt="Image" src="https://github.com/user-attachments/assets/9e8cfe01-2902-4f40-97c6-d7723b17dfa7" />
+
+------------------------------------------------------------------------------
+
+#### 상점 다이어그램
+
+<img width="332" height="174" alt="Image" src="https://github.com/user-attachments/assets/c715cf2a-f1b7-4786-8de5-c9331aa00035" />
+
+## 3. 주요 기능
    
-### 2.1 게임시스템
+### 3.1 게임시스템
 
 ### [TileGenerator.cs](Assets/Project/Scripts/TileGenerator.cs)
 
@@ -70,7 +96,7 @@ Unity를 활용하여 2D로 제작하였습니다
 
 *SetDraggedPosition(PointerEventData eventData) : 현재 포인터 좌표를 기준으로 아이콘의 월드 위치 계산
 
-### 2.2 데이터
+### 3.2 데이터
 
 ### [TowerDatabase](Assets/Project/Scripts/Json/TowerDatabase.cs)
 
@@ -90,7 +116,7 @@ Unity를 활용하여 2D로 제작하였습니다
 
 * 플레이 결과 데이터와 재화를 PlayerPrefs에 저장, 조회하는 결과 저장 및 누적 보상 관리 클래스입니다.
 
-### 2.3 상점
+### 3.3 상점
 
 ### [ShopManager](Assets/Project/Scripts/ShopManager.cs)
 
@@ -105,32 +131,6 @@ Unity를 활용하여 2D로 제작하였습니다
 * BuySlotExpansion() : Gold를 소모해 최대 타워 슬롯 수 증가
   
 * SaveTowerDatabase() : 수정된 TowerDatabase를 JSON으로 직렬화
-
-## 3. 플로우차트 및 다이어그램
-
-### 3.1 플로우 차트
-
-<img width="2916" height="1193" alt="Image" src="https://github.com/user-attachments/assets/1df6d1ea-7b20-479d-b959-aa6bc4ac9e22" />
-
-------------------------------------------------------------------------------
-
-### 3.2 다이어그램
-
-#### 게임플레이 다이어그램
-
-<img width="814" height="376" alt="Image" src="https://github.com/user-attachments/assets/357c2c1a-e8e2-4dab-97a2-aca81e645cdf" />
-
-------------------------------------------------------------------------------
-
-#### 데이터 다이어그램
-
-<img width="598" height="344" alt="Image" src="https://github.com/user-attachments/assets/9e8cfe01-2902-4f40-97c6-d7723b17dfa7" />
-
-------------------------------------------------------------------------------
-
-#### 상점 다이어그램
-
-<img width="332" height="174" alt="Image" src="https://github.com/user-attachments/assets/c715cf2a-f1b7-4786-8de5-c9331aa00035" />
 
 ------------------------------------------------------------------------------
 
