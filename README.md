@@ -124,13 +124,13 @@ Unity를 활용하여 2D로 제작하였습니다
 
 #### 데이터 다이어그램
 
-<img width="622" height="321" alt="Image" src="https://github.com/user-attachments/assets/ea418557-87de-4ace-aafe-d1fb10917a65" />
+<img width="598" height="344" alt="Image" src="https://github.com/user-attachments/assets/9e8cfe01-2902-4f40-97c6-d7723b17dfa7" />
 
 ------------------------------------------------------------------------------
 
 #### 상점 다이어그램
 
-<img width="332" height="169" alt="Image" src="https://github.com/user-attachments/assets/94e810db-b428-4794-abda-e75bc61b6ec0" />
+<img width="332" height="174" alt="Image" src="https://github.com/user-attachments/assets/c715cf2a-f1b7-4786-8de5-c9331aa00035" />
 
 ------------------------------------------------------------------------------
 
